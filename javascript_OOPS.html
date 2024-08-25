@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-08-22 Thu 20:46 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Javascript Notes - OOPS</title>
+<meta name="author" content="mklno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Javascript Notes - OOPS</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc697ee3">1. What is Object Oriented Programming?</a></li>
+<li><a href="#org1fbdb14">2. Classes and Instances</a></li>
+<li><a href="#org7687422">3. Fundamental OOP Principles</a></li>
+<li><a href="#org9624be6">4. OOP in Javascript</a></li>
+<li><a href="#org1485475">5. Constructor functions and the new operator</a></li>
+<li><a href="#org06b3855">6. Prototypes</a></li>
+<li><a href="#orgca4d656">7. Prototypal Inheritance and the Prototype Chain</a></li>
+<li><a href="#org4a25809">8. Prototyplal Inheritance on build in objects</a></li>
+<li><a href="#orgbf5bfc7">9. ES6 Classes</a></li>
+<li><a href="#org533ee3d">10. Getters and Setters</a></li>
+<li><a href="#org6fc3650">11. Static Methods</a></li>
+<li><a href="#orgc572c73">12. Object.create</a></li>
+<li><a href="#org09b59ac">13. Inheritance between Classes: Constructor's functions</a></li>
+<li><a href="#orgbe86419">14. Inheritance between Classes: ES5 Classes</a></li>
+<li><a href="#org4ebab61">15. Inheritance between Classes: Object.create</a></li>
+<li><a href="#orgada47fd">16. Encapsulation: Protected properties and methods</a></li>
+<li><a href="#org1a00fcf">17. Encapsulation: Private Class fields and methods</a>
+<ul>
+<li><a href="#org4dbdccb">17.1. Public Fields</a></li>
+<li><a href="#org35080cd">17.2. Private fields</a></li>
+<li><a href="#orga50ed4b">17.3. Private methods</a></li>
+</ul>
+</li>
+<li><a href="#org81d2e09">18. Chaining Methods</a></li>
+<li><a href="#org03e12dd">19. Summary</a></li>
+<li><a href="#org0b49806">20. Sample class</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc697ee3" class="outline-2">
+<h2 id="orgc697ee3"><span class="section-number-2">1.</span> What is Object Oriented Programming?</h2>
+<div class="outline-text-2" id="text-1">
+
+<div id="org1115dcb" class="figure">
+<p><img src="what-is-object-oriented-programming-1.jpg" alt="what-is-object-oriented-programming-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1fbdb14" class="outline-2">
+<h2 id="org1fbdb14"><span class="section-number-2">2.</span> Classes and Instances</h2>
+<div class="outline-text-2" id="text-2">
+
+<div id="org16d6dd5" class="figure">
+<p><img src="classes-and-instances-1.jpg" alt="classes-and-instances-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7687422" class="outline-2">
+<h2 id="org7687422"><span class="section-number-2">3.</span> Fundamental OOP Principles</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Abstraction</li>
+</ul>
+
+<div id="org616f79e" class="figure">
+<p><img src="fundamental-oop-principles-1.jpg" alt="fundamental-oop-principles-1.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Encapsulation</li>
+</ul>
+
+<div id="orgc59e03c" class="figure">
+<p><img src="fundamental-oop-principles-2.jpg" alt="fundamental-oop-principles-2.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Inheritance</li>
+</ul>
+
+<div id="orgd4cb9e7" class="figure">
+<p><img src="fundamental-oop-principles-3.jpg" alt="fundamental-oop-principles-3.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Polymorphism</li>
+</ul>
+
+<div id="orga6ac644" class="figure">
+<p><img src="fundamental-oop-principles-4.jpg" alt="fundamental-oop-principles-4.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9624be6" class="outline-2">
+<h2 id="org9624be6"><span class="section-number-2">4.</span> OOP in Javascript</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Concept of Prototypes</li>
+</ul>
+
+<div id="org7d72905" class="figure">
+<p><img src="oop-in-javascript-1.jpg" alt="oop-in-javascript-1.jpg" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>Implementing Prototypal inheritance in Javascript</li>
+</ul>
+
+<div id="org84b2821" class="figure">
+<p><img src="oop-in-javascript-2.jpg" alt="oop-in-javascript-2.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1485475" class="outline-2">
+<h2 id="org1485475"><span class="section-number-2">5.</span> Constructor functions and the new operator</h2>
+<div class="outline-text-2" id="text-5">
+
+<div id="orgea21545" class="figure">
+<p><img src="constructor-functions-and-the-new-operat-1.jpg" alt="constructor-functions-and-the-new-operat-1.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>A new empty object is created</li>
+<li>The function is called and the this keyword is updated to the empty object</li>
+<li>The newly created object is linked to the prototype</li>
+<li>The function automatically returns the object which was created in the beginning</li>
+<li>To check the instance, use instanceOf <i>jonas instanceOf Person</i> returns a boolean</li>
+<li>To declare methods don't create inside the constructor function, since it will create a copy of the function for all the objects which affects the performance</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">Person</span> = <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">firstName</span>, <span style="color: #e5e5e5;">birthYear</span>) {
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  <span style="color: #616161;">// </span><span style="color: #616161;">avoid creating a method like this  </span>
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.calcAge = <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.age = 2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear;
+  };
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org06b3855" class="outline-2">
+<h2 id="org06b3855"><span class="section-number-2">6.</span> Prototypes</h2>
+<div class="outline-text-2" id="text-6">
+
+<div id="org1a05854" class="figure">
+<p><img src="prototypes-1.jpg" alt="prototypes-1.jpg" />
+</p>
+</div>
+
+
+<div id="org58a6d5a" class="figure">
+<p><img src="prototypes-2.jpg" alt="prototypes-2.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca4d656" class="outline-2">
+<h2 id="orgca4d656"><span class="section-number-2">7.</span> Prototypal Inheritance and the Prototype Chain</h2>
+<div class="outline-text-2" id="text-7">
+
+<div id="org911559d" class="figure">
+<p><img src="prototypal-inheritance-and-the-prototype-1.jpg" alt="prototypal-inheritance-and-the-prototype-1.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>The jonas object and the prototype forms a prototype chain</li>
+</ul>
+
+<div id="org9dc9439" class="figure">
+<p><img src="prototypal-inheritance-and-the-prototype-2.jpg" alt="prototypal-inheritance-and-the-prototype-2.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4a25809" class="outline-2">
+<h2 id="org4a25809"><span class="section-number-2">8.</span> Prototyplal Inheritance on build in objects</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>Prototype chain in objects and class</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js">console.log(mano.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">prototype of the class</span>
+console.log(mano.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">prototype of the object on the top level</span>
+console.log(mano.__proto__.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">returns null</span>
+console.log(Person.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>); <span style="color: #616161;">// </span><span style="color: #616161;">prototype of the class</span>
+console.log(mano.hasOwnProperty(<span style="color: #4682b4;">'firstName'</span>)); <span style="color: #616161;">// </span><span style="color: #616161;">hasOwnProperty is from the prototype of the top level object due to prototype chain</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>Prototype chain in arrays</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">arr</span> = [2,3,4,5,6,7];
+console.log(arr.__proto__);
+console.log(Array.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>);
+console.group(arr.__proto__ === Array.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>);
+</pre>
+</div>
+<ul class="org-ul">
+<li>Prototype chain in an DOM element</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">h1</span> = document.querySelector(<span style="color: #4682b4;">'h1'</span>);
+console.log(h1.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">HTML Heading Element</span>
+console.log(h1.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">HTML Element</span>
+console.log(h1.__proto__.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">Element</span>
+console.log(h1.__proto__.__proto__.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">Node</span>
+console.log(h1.__proto__.__proto__.__proto__.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">Event Target</span>
+console.log(h1.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">Object at the top</span>
+console.log(h1.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__); <span style="color: #616161;">// </span><span style="color: #616161;">null</span>
+</pre>
+</div>
+
+<div id="orge53b9dd" class="figure">
+<p><img src="prototyplal-inheritance-on-build-in-obje-1.jpg" alt="prototyplal-inheritance-on-build-in-obje-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbf5bfc7" class="outline-2">
+<h2 id="orgbf5bfc7"><span class="section-number-2">9.</span> ES6 Classes</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #616161;">// </span><span style="color: #616161;">class expression</span>
+<span style="color: #e5e5e5; font-weight: bold;">class</span> Person = <span style="color: #e5e5e5; font-weight: bold;">class</span>{};
+
+<span style="color: #616161;">// </span><span style="color: #616161;">class declaration</span>
+<span style="color: #e5e5e5; font-weight: bold;">class</span> Person{};
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> Person {
+  constructor(firstName, birthYear) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  }
+  calcAge(){
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> 2024-<span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear;
+  }
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">mano</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">Person</span>(<span style="color: #4682b4;">'Mano'</span>, 2000);
+console.log(mano.calcAge());
+</pre>
+</div>
+<ul class="org-ul">
+<li>Classes are not hoised and hence they should be defined before creating an instance.</li>
+<li>Classes are also treated as first class functions and hence they can be passed to other functions and returned by other functions. That's possible because classes are just a different type of functions behind the scenes.</li>
+<li>Classes are by default executed in strict mode.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org533ee3d" class="outline-2">
+<h2 id="org533ee3d"><span class="section-number-2">10.</span> Getters and Setters</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>Setters and getters in normal objects and it works in the sameway as in normal objects</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">accounts</span> = {
+    name: <span style="color: #4682b4;">'Jonas'</span>,
+    movements: [10,24,5,3,345,43],
+
+    get latest(){
+        <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>.movements.slice(-1).pop();
+    },
+
+    set movement(x){
+        <span style="color: #e5e5e5; font-weight: bold;">this</span>.movements.push(x);
+    }
+}
+<span style="color: #616161;">// </span><span style="color: #616161;">getter function is not called at all, its been used as a data in an object</span>
+console.log(accounts.latest); <span style="color: #616161;">// </span><span style="color: #616161;">returns 43</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">setter function should have atleast one argument</span>
+accounts.movement = 10;
+console.log(accounts); <span style="color: #616161;">// </span><span style="color: #616161;">[10, 24, 5, 3, 345, 43, 10]</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>In objects. Understand how they work in properly, there is a nuance in it</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> Person {
+  constructor(firstName, birthYear) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  }
+  calcAge() {
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> 2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear;
+  }
+  set firstName(name){
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName = name;
+  }
+  get firstName(){
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName;
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6fc3650" class="outline-2">
+<h2 id="org6fc3650"><span class="section-number-2">11.</span> Static Methods</h2>
+<div class="outline-text-2" id="text-11">
+<ul class="org-ul">
+<li>The methods are implemented on the object's constructor rather than instance of the object.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> Person {
+  constructor(firstName, birthYear) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  }
+  calcAge() {
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> 2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear;
+  }
+  set firstName(name){
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName = name;
+  }
+  get firstName(){
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName;
+  }
+}
+
+Person.hey = <span style="color: #e5e5e5; font-weight: bold;">function</span>(){
+  console.log(<span style="color: #4682b4;">"Hello There"</span>);
+  console.log(<span style="color: #e5e5e5; font-weight: bold;">this</span>); <span style="color: #616161;">// </span><span style="color: #616161;">this keyword will be point out to the object calling the method as always</span>
+}
+
+Person.hey(); <span style="color: #616161;">// </span><span style="color: #616161;">it works since its defined on the constructor</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">mano</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">Person</span>(<span style="color: #4682b4;">'Mano'</span>, 2023);
+mano.hey(); <span style="color: #616161;">// </span><span style="color: #616161;">function is not defined in the prototype of the Person class and hence it cannot inherit it</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>The static function can also be defined inside the class with the static keyword</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> Person {
+  constructor(firstName, birthYear) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  }
+  calcAge() {
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> 2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear;
+  }
+  set firstName(name){
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName = name;
+  }
+  get firstName(){
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName;
+  }
+
+  <span style="color: #e5e5e5; font-weight: bold;">static</span> hey(){
+    console.log(<span style="color: #4682b4;">'hello'</span>);
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc572c73" class="outline-2">
+<h2 id="orgc572c73"><span class="section-number-2">12.</span> Object.create</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>It works in a pretty different way than constructor functions and classes.</li>
+<li>We do have the concept of prototypal inheritance here as well however there are no prototype properties involved, also no constructor functions and no new operator.</li>
+<li>Object.create can be used to manually set the prototype of an object to any other object we want.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">PersonProto</span> = {
+  calcAge() {
+    console.log(2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear);
+  },
+};
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">mano</span> = Object.create(PersonProto);
+mano.birthYear = 2000;
+mano.calcAge();
+</pre>
+</div>
+
+<div id="orgfc3ce72" class="figure">
+<p><img src="object-create-1.jpg" alt="object-create-1.jpg" />
+</p>
+</div>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">PersonProto</span> = {
+  calcAge() {
+    console.log(2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear);
+  },
+  <span style="color: #616161;">// </span><span style="color: #616161;">the proper way of defining a variable inside the prototype</span>
+  init(firstName, birthYear){
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  }
+};
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">mano</span> = Object.create(PersonProto);
+mano.init(<span style="color: #4682b4;">'Mano'</span>, 2000);
+mano.calcAge();
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org09b59ac" class="outline-2">
+<h2 id="org09b59ac"><span class="section-number-2">13.</span> Inheritance between Classes: Constructor's functions</h2>
+<div class="outline-text-2" id="text-13">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #616161;">// </span><span style="color: #616161;">Person class</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">Person</span> = <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">firstName</span>, <span style="color: #e5e5e5;">birthYear</span>) {
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+};
+
+Person.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>.calcAge = <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> 2000 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear;
+};
+
+<span style="color: #616161;">// </span><span style="color: #616161;">Student class</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">Student</span> = <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">firstName</span>, <span style="color: #e5e5e5;">birthYear</span>, <span style="color: #e5e5e5;">course</span>) {
+  Person.call(<span style="color: #e5e5e5; font-weight: bold;">this</span>, firstName, birthYear);
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.course = course;
+};
+
+Student.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>.intro = <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+  console.log(<span style="color: #4682b4;">`hello I am ${this.firstName}`</span>);
+};
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">mano</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">Student</span>(<span style="color: #4682b4;">'mano'</span>, 2024, <span style="color: #4682b4;">'cs'</span>);
+console.log(mano);
+</pre>
+</div>
+<ul class="org-ul">
+<li>We can create inheritance using the object.create property</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js">Student.<span style="color: #e5e5e5; font-weight: bold;">prototype</span> = Object.create(Person.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>);
+</pre>
+</div>
+<p>
+<img src="inheritance-between-classes-constructor'-1.jpg" alt="inheritance-between-classes-constructor'-1.jpg" />
+<img src="inheritance-between-classes-constructor'-2.jpg" alt="inheritance-between-classes-constructor'-2.jpg" />
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">Car</span> = <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">make</span>, <span style="color: #e5e5e5;">speed</span>) {
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.make = make;
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed = speed;
+};
+Car.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>.accelerate = <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> (<span style="color: #e5e5e5; font-weight: bold;">this</span>.speed += 10);
+};
+Car.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>.brake = <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> (<span style="color: #e5e5e5; font-weight: bold;">this</span>.speed -= 5);
+};
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">EV</span> = <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">make</span>, <span style="color: #e5e5e5;">speed</span>, <span style="color: #e5e5e5;">charge</span>) {
+  Car.call(<span style="color: #e5e5e5; font-weight: bold;">this</span>, make, speed);
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.charge = charge;
+};
+
+EV.<span style="color: #e5e5e5; font-weight: bold;">prototype</span> = Object.create(Car.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>);
+EV.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>.chargeBattery = <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">chargeTo</span>) {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> (<span style="color: #e5e5e5; font-weight: bold;">this</span>.charge = chargeTo);
+};
+EV.<span style="color: #e5e5e5; font-weight: bold;">prototype</span>.accelerate = <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed += 20;
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.charge -= 1;
+};
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">tesla</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">EV</span>(<span style="color: #4682b4;">'Tesla'</span>, 120, 100);
+tesla.accelerate();
+tesla.accelerate();
+tesla.brake();
+console.log(tesla); <span style="color: #616161;">// </span><span style="color: #616161;">{ "make": "Tesla", "speed": 155, "charge": 98 }</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbe86419" class="outline-2">
+<h2 id="orgbe86419"><span class="section-number-2">14.</span> Inheritance between Classes: ES5 Classes</h2>
+<div class="outline-text-2" id="text-14">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> Person {
+  constructor(firstName, birthYear) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  }
+  calcAge() {
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> 2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear;
+  }
+  set firstName(name) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName = name;
+  }
+  get firstName() {
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>._firstName;
+  }
+
+  <span style="color: #e5e5e5; font-weight: bold;">static</span> hey() {
+    console.log(<span style="color: #4682b4;">'hello'</span>);
+  }
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">class</span> Student <span style="color: #e5e5e5; font-weight: bold;">extends</span> Person {
+  constructor(firstName, birthYear, course) {
+    <span style="color: #616161;">// </span><span style="color: #616161;">always this following line needs to happen first since it sets the this keyword</span>
+    <span style="color: #e5e5e5; font-weight: bold;">super</span>(firstName, birthYear);
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.course = course;
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4ebab61" class="outline-2">
+<h2 id="org4ebab61"><span class="section-number-2">15.</span> Inheritance between Classes: Object.create</h2>
+<div class="outline-text-2" id="text-15">
+
+<div id="org678dfa0" class="figure">
+<p><img src="inheritance-between-classes-object-creat-1.jpg" alt="inheritance-between-classes-object-creat-1.jpg" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">PersonProto</span> = {
+  calcAge() {
+    console.log(2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear);
+  },
+  <span style="color: #616161;">// </span><span style="color: #616161;">the proper way of defining a variable inside the prototype</span>
+  init(firstName, birthYear) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  },
+};
+
+<span style="color: #616161;">// </span><span style="color: #616161;">creating a new Person</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">mano</span> = Object.create(PersonProto);
+<span style="color: #616161;">// </span><span style="color: #616161;">Student inheriting Person</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">StudentProto</span> = Object.create(PersonProto);
+<span style="color: #616161;">// </span><span style="color: #616161;">creating a new Student</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">manoStudent</span> = Object.create(StudentProto);
+manoStudent.init(<span style="color: #4682b4;">'Mano'</span>, 2000);
+manoStudent.calcAge();
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">PersonProto</span> = {
+  calcAge() {
+    console.log(2024 - <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear);
+  },
+  <span style="color: #616161;">// </span><span style="color: #616161;">the proper way of defining a variable inside the prototype</span>
+  init(firstName, birthYear) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.firstName = firstName;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.birthYear = birthYear;
+  },
+};
+
+<span style="color: #616161;">// </span><span style="color: #616161;">creating a new Person</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">mano</span> = Object.create(PersonProto);
+<span style="color: #616161;">// </span><span style="color: #616161;">Student inheriting Person</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">StudentProto</span> = Object.create(PersonProto);
+<span style="color: #616161;">// </span><span style="color: #616161;">creating a new Student</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">manoStudent</span> = Object.create(StudentProto);
+manoStudent.init(<span style="color: #4682b4;">'Mano'</span>, 2000);
+manoStudent.calcAge();
+
+<span style="color: #616161;">// </span><span style="color: #616161;">adding a new function to StudentProto</span>
+StudentProto.init = <span style="color: #e5e5e5; font-weight: bold;">function</span>(<span style="color: #e5e5e5;">firstName</span>, <span style="color: #e5e5e5;">birthYear</span>, <span style="color: #e5e5e5;">course</span>){
+  PersonProto.init.call(<span style="color: #e5e5e5; font-weight: bold;">this</span>, firstName, birthYear);
+  <span style="color: #e5e5e5; font-weight: bold;">this</span>.course = course;
+}
+manoStudent.init(<span style="color: #4682b4;">'Mano'</span>, 2012, <span style="color: #4682b4;">'CS'</span>);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgada47fd" class="outline-2">
+<h2 id="orgada47fd"><span class="section-number-2">16.</span> Encapsulation: Protected properties and methods</h2>
+<div class="outline-text-2" id="text-16">
+<ul class="org-ul">
+<li>By default, JS doens't suppport private properties and methods. Its still in development.</li>
+<li>Hence the JS devs use a convention in which the properies and methods which they want private starts with an underscore indicating that it should be private and shouldn't be accessed outside the class.</li>
+<li>Its just a convention being followed by the DEV's and you can still access the properties and the methods outside the Class.</li>
+</ul>
+
+<div id="orgd11e9cd" class="figure">
+<p><img src="encapsulation-protected-properties-and-m-1.jpg" alt="encapsulation-protected-properties-and-m-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1a00fcf" class="outline-2">
+<h2 id="org1a00fcf"><span class="section-number-2">17.</span> Encapsulation: Private Class fields and methods</h2>
+<div class="outline-text-2" id="text-17">
+</div>
+<div id="outline-container-org4dbdccb" class="outline-3">
+<h3 id="org4dbdccb"><span class="section-number-3">17.1.</span> Public Fields</h3>
+<div class="outline-text-3" id="text-17-1">
+
+<div id="org109d815" class="figure">
+<p><img src="encapsulation-private-class-fields-and-m-1.jpg" alt="encapsulation-private-class-fields-and-m-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org35080cd" class="outline-3">
+<h3 id="org35080cd"><span class="section-number-3">17.2.</span> Private fields</h3>
+<div class="outline-text-3" id="text-17-2">
+<p>
+<img src="private-fields-1.jpg" alt="private-fields-1.jpg" />
+<img src="private-fields-2.jpg" alt="private-fields-2.jpg" />
+</p>
+</div>
+</div>
+<div id="outline-container-orga50ed4b" class="outline-3">
+<h3 id="orga50ed4b"><span class="section-number-3">17.3.</span> Private methods</h3>
+<div class="outline-text-3" id="text-17-3">
+<ul class="org-ul">
+<li>Most browsers doesn't support it yet</li>
+</ul>
+
+<div id="orgd7feb69" class="figure">
+<p><img src="private-methods-1.jpg" alt="private-methods-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org81d2e09" class="outline-2">
+<h2 id="org81d2e09"><span class="section-number-2">18.</span> Chaining Methods</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+<img src="chaining-methods-1.jpg" alt="chaining-methods-1.jpg" />
+<img src="chaining-methods-2.jpg" alt="chaining-methods-2.jpg" />
+</p>
+</div>
+</div>
+<div id="outline-container-org03e12dd" class="outline-2">
+<h2 id="org03e12dd"><span class="section-number-2">19.</span> Summary</h2>
+<div class="outline-text-2" id="text-19">
+
+<div id="org3f89719" class="figure">
+<p><img src="summary-1.jpg" alt="summary-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0b49806" class="outline-2">
+<h2 id="org0b49806"><span class="section-number-2">20.</span> Sample class</h2>
+<div class="outline-text-2" id="text-20">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> CarCl {
+  constructor(make, speed) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.make = make;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed = speed;
+  }
+
+  accelerate() {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed += 10;
+  }
+
+  brake() {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed -= 5;
+  }
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">class</span> EVCl <span style="color: #e5e5e5; font-weight: bold;">extends</span> CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    <span style="color: #e5e5e5; font-weight: bold;">super</span>(make, speed);
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.#charge = charge;
+  }
+
+  accelerate() {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed += 20;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.#charge -= 1;
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>;
+  }
+
+  brake() {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed -= 10;
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>;
+  }
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">tesla</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">EVCl</span>(<span style="color: #4682b4;">'Tesla'</span>, 120, 23);
+<span style="color: #616161;">// </span><span style="color: #616161;">tesla.accelerate();</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">console.log(tesla);</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">tesla.accelerate();</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">tesla.brake();</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">console.log(tesla);</span>
+tesla.accelerate().accelerate().brake();
+console.log(tesla);
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mklno</p>
+<p class="date">Created: 2024-08-22 Thu 20:46</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

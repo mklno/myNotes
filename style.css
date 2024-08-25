@@ -1,0 +1,11 @@
+/* Import the Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+pre.src {
+    background-color: #282c34; /* Darker background */
+    color: #61dafb; /* Lighter text */
+}
+

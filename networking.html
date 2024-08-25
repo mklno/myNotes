@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-08-20 Tue 09:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Networking</title>
+<meta name="author" content="mklno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Networking</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org46a7afc">1. What is networking?</a>
+<ul>
+<li><a href="#orgc36610a">1.1. How do we make this happen?</a></li>
+</ul>
+</li>
+<li><a href="#orgd5b7568">2. Types of communication networks</a>
+<ul>
+<li><a href="#org9f0008d">2.1. Circut Switched</a></li>
+<li><a href="#orgf43085e">2.2. Packet Switched</a></li>
+</ul>
+</li>
+<li><a href="#org212d228">3. Client Server Architecture</a></li>
+<li><a href="#org27b6098">4. Protocol</a></li>
+<li><a href="#org34f6d78">5. Network layers and abstraction</a></li>
+<li><a href="#org4be819b">6. Difference between Wired versus Wireless networks</a></li>
+<li><a href="#org1c801f1">7. Introducing The Sockets API</a></li>
+<li><a href="#orgbb5c50a">8. Client Connection Process</a></li>
+<li><a href="#org81c5f1a">9. Server Listening Process</a></li>
+<li><a href="#org0810925">10. Questions</a></li>
+<li><a href="#org9f188ec">11. Network definitions</a>
+<ul>
+<li><a href="#orgb09f7e9">11.1. IP Address</a></li>
+<li><a href="#org8a8059f">11.2. Port</a></li>
+<li><a href="#org1389f8d">11.3. Transmission Control Protocol (TCP)</a></li>
+<li><a href="#orgfe11dee">11.4. User Datagram Protocol (UDP)</a></li>
+<li><a href="#org8ccd667">11.5. IPv6</a></li>
+<li><a href="#org377e580">11.6. Network Address Translation (NAT)</a></li>
+<li><a href="#org904a1c0">11.7. Router</a></li>
+<li><a href="#org570ee1b">11.8. Internet Protocol</a></li>
+<li><a href="#org454bd54">11.9. Local Area Network (LAN)</a></li>
+<li><a href="#org42f7688">11.10. Interface</a></li>
+<li><a href="#org8975213">11.11. Header</a></li>
+<li><a href="#org7b85532">11.12. Network Adapter</a></li>
+<li><a href="#org6d83c45">11.13. MAC address</a></li>
+</ul>
+</li>
+<li><a href="#org4b70876">12. Layered Network Model</a>
+<ul>
+<li><a href="#orgee7a844">12.1. Layering of Protocols on Data</a></li>
+</ul>
+</li>
+<li><a href="#org444b004">13. The Internet Layer Model</a></li>
+<li><a href="#orgf1f31ce">14. The ISO OSI Network Layer Model</a>
+<ul>
+<li><a href="#org23b30c3">14.1. Protocols</a></li>
+</ul>
+</li>
+<li><a href="#orga777cb8">15. Questions</a></li>
+<li><a href="#orgc1d2253">16. The Internet Protocol</a>
+<ul>
+<li><a href="#org16a8fbf">16.1. Subnets</a>
+<ul>
+<li><a href="#org9390a14">16.1.1. Example</a></li>
+</ul>
+</li>
+<li><a href="#orgb33bf77">16.2. Additional IP layer protocols</a></li>
+<li><a href="#org5601696">16.3. Private Networks</a></li>
+<li><a href="#org7d1675f">16.4. Static versus Dynamic IP addr and DHCP</a></li>
+</ul>
+</li>
+<li><a href="#org8556105">17. IP4 and IP6</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org46a7afc" class="outline-2">
+<h2 id="org46a7afc"><span class="section-number-2">1.</span> What is networking?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Exchange of random bytes of data between two computers either over the internet or over a LAN.
+</p>
+</div>
+<div id="outline-container-orgc36610a" class="outline-3">
+<h3 id="orgc36610a"><span class="section-number-3">1.1.</span> How do we make this happen?</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>A way to identify the source and destination computers.</li>
+<li>A way of maintaining data integrity.</li>
+<li>A way of routing data from one computer to another.</li>
+<li>Network is a hardware, and OS controls all the access to the hardware. So, if we need to communitate to the network we need to do it via the OS and its being done by an API called the <b>Sockets API</b>. It gives us a way to read and write data over the internet.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd5b7568" class="outline-2">
+<h2 id="orgd5b7568"><span class="section-number-2">2.</span> Types of communication networks</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9f0008d" class="outline-3">
+<h3 id="org9f0008d"><span class="section-number-3">2.1.</span> Circut Switched</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Its old school and its not used anymore.</li>
+<li>How the communication works over here?
+<ul class="org-ul">
+<li>Consider a old school telephone operator</li>
+<li>The call is made and it is connected to the operator.</li>
+<li>The operator picks the call and connects the call physically to that location and the connection is made available between the two folks.</li>
+</ul></li>
+<li>Issues with Circuit Switched communication
+<ul class="org-ul">
+<li>Poor scalability.</li>
+<li>If the distance is long, requires more operators there by leading to increased cost. Though it was overcame by sending electro magnetic signals.</li>
+<li>Multiple people coulnd't use the same route at a single time and much more.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf43085e" class="outline-3">
+<h3 id="orgf43085e"><span class="section-number-3">2.2.</span> Packet Switched</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>The data is divided to many small packets and sent over the cables under the over ocean from souce to the destination.</li>
+<li>Once the packets reach the destination, they are merged together and they are delivered.</li>
+<li>Works much like a delivery of a package.</li>
+<li>Advantages
+<ul class="org-ul">
+<li>Doesn't require a dedicated circuit between every communication pair of computers as required by circuit switched networks.</li>
+<li>Multiple computers can use the cable to send the individual packets at the same time.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org212d228" class="outline-2">
+<h2 id="org212d228"><span class="section-number-2">3.</span> Client Server Architecture</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>A <i>server</i> is a program that listens for incoming connections and accepts them.</li>
+<li>Usually, the server listens for a request from a client and sends back a response to the client.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org27b6098" class="outline-2">
+<h2 id="org27b6098"><span class="section-number-2">4.</span> Protocol</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A set of rules which enables the program, the server and the client in this case to communicate with each other. Following are some of the protocols.
+</p>
+<ul class="org-ul">
+<li>TCP - used to transmit data reliably (trustworthy).</li>
+<li>UDP - used to transmit data quickly but unreliably.</li>
+<li>IP - used to route packets over the network from one computer to another.</li>
+<li>HTTP - used to get web pages and other web requests.</li>
+<li>Ethernet - used to send data over LAN.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org34f6d78" class="outline-2">
+<h2 id="org34f6d78"><span class="section-number-2">5.</span> Network layers and abstraction</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Here’s a quick overview of what happens when data goes out on the network. We’ll cover this in much more detail in the coming 
+</p>
+<ul class="org-ul">
+<li>A user program says, “I want to send the bytes ‘GET / HTTP/1.1’ to that web server over there.” (Servers are identified by IP address and a port on the Internet–more on that later.)</li>
+<li>The OS takes the data and wraps it up in a header (that is, prepends some data) that provides error detection (and maybe ordering) information. The exact structure of this header would be defined by a protocol such as TCP or UDP.</li>
+<li>The OS takes all of that, and wraps it up in another header that helps with routing. This header would be defined by the IP protocol.</li>
+<li>The OS hands all that data to the network interface card (the NIC–the piece of hardware that’s responsible for networking).</li>
+<li>The NIC wraps all that data up into another header that’s defined by a protocol such as Ethernet that helps with delivery on the LAN.</li>
+<li>The NIC sends the entire, multiply wrapped data out over the wire, or over the air (with WiFi).</li>
+</ul>
+<p>
+When the receiving computer gets the packet, the reverse process happens. Its NIC strips the Ethernet header, the OS makes sure the IP address is correct, figures out which program is listening on that port, and sends it the fully unwrapped data.
+All these different layers that do all this wrapping are together called the protocol stack. (This is a different usage of the word “stack” than the stack abstract data type.)
+This works well because each layer is responsible for different parts of the process, e.g. one layer handles data integrity, and another handles routing the packet over the network, and another handles the data itself that is being transmitted between the programs. And each layer doesn’t care about what the layers below it are doing with the data.
+It’s that last concept that’s really important: when data is going over WiFi, the WiFi hardware doesn’t even care what the data is, if it’s Internet data or not, how integrity is assured (or not). All WiFi cares about is getting a big chunk of data transmitted over the air to another computer. When it arrives at the other computer, that computer will strip off the Ethernet stuff and look deeper in the packet, deciding what to do with it.
+And since the layers don’t care what data is encapsulated below them, you can swap out protocols at various layers and still have the rest of them work. So if you’re writing a program at the top layer (where we tend to write them most commonly), you don’t care what’s happening at the layers below that. It’s Somebody Else’s Problem.
+For example, you might be getting a web page with HTTP/TCP/IP/Ethernet, or you might be transmitting a file to another computer with TFTP/UDP/IP/Ethernet. IP and Ethernet work fine in both cases, because they are indifferent about the data they are sending.
+There are many, many details omitted from this description, but we’re still in high-level overview land.
+</p>
+</div>
+</div>
+<div id="outline-container-org4be819b" class="outline-2">
+<h2 id="org4be819b"><span class="section-number-2">6.</span> Difference between Wired versus Wireless networks</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Computers are connected to a LAN either via a physical ethernet cable or a wifi access point.</li>
+<li>They both use Ethernet protocol for low level communication.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1c801f1" class="outline-2">
+<h2 id="org1c801f1"><span class="section-number-2">7.</span> Introducing The Sockets API</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>In Unix, the sockets API gives processes a way to communicate with each other.</li>
+<li>Its is a blend of libray calls and system call which are nothing but the functions directly called by the OS.</li>
+<li>It supports a variety of methods of communication, and one of them is over the Internet.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbb5c50a" class="outline-2">
+<h2 id="orgbb5c50a"><span class="section-number-2">8.</span> Client Connection Process</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Following are the steps to connect to another computer using sockets.
+</p>
+<ul class="org-ul">
+<li>Ask the OS for a socket
+<ul class="org-ul">
+<li>Usually an integer called file descriptor, user to refer to this network connection.</li>
+</ul></li>
+<li>Perform a DNS lookup
+<ul class="org-ul">
+<li>DNS is a distributed database which helps to convert human readble name to IP addresses.</li>
+</ul></li>
+<li>Connect the socket to that IP address on a specific port.
+<ul class="org-ul">
+<li>Port 80 is the standart port used for servers that HTTP protocol.</li>
+</ul></li>
+<li>Send data and receive data.</li>
+<li>Close the connection.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org81c5f1a" class="outline-2">
+<h2 id="org81c5f1a"><span class="section-number-2">9.</span> Server Listening Process</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>Ask the OS for a socket</li>
+<li>Bind the socket to a port
+<ul class="org-ul">
+<li>A port number is assigned here so that the clients can connect to.</li>
+<li>Program's that aren't run as admin cannot be bind to ports under 1024 since they are reserved.</li>
+<li>Ports are per computer, two differenct computers can use the same port.</li>
+<li>Clients are bound to port, as well.</li>
+</ul></li>
+<li>Listen for incoming connections
+<ul class="org-ul">
+<li>Let the OS know when there is an incoming connection.</li>
+</ul></li>
+<li>Accetp incoming connections
+<ul class="org-ul">
+<li>The server will sleep when you try to accept a new connection if none are pening, and wakes up when someone tries to connect.</li>
+<li>The connection is made with the client, a new socket is returned specifically for that connection. It helps to handle multiple clients at once.</li>
+</ul></li>
+<li>Send data and receive data
+<ul class="org-ul">
+<li>The server recieves the request from the client and the sends back the response.</li>
+</ul></li>
+<li>Go back and accept another connection.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0810925" class="outline-2">
+<h2 id="org0810925"><span class="section-number-2">10.</span> Questions</h2>
+<div class="outline-text-2" id="text-10">
+<ul class="org-ul">
+<li>What role does bind() play on the server side?
+<ul class="org-ul">
+<li>The bind method helps to assign a port to the server.</li>
+</ul></li>
+
+<li>Would a client ever call bind()? (Might have to search this one on the Internet.)
+<ul class="org-ul">
+<li>On the client side, you would only use bind if you want to use a specific client-side port, which is rare. Usually on the client, you specify the IP address and port of the server machine, and the OS will pick which port you will use. Generally you don't care, but in some cases, there may be a firewall on the client that only allows outgoing connections on certain port. In that case, you will need to bind to a specific port before the connection attempt will work.</li>
+</ul></li>
+
+<li>Speculate on why accept() returns a new socket as opposed to just reusing the one we called listen() with.</li>
+
+<li>What would happen if the server didn’t loop to another accept() call? What would happen when a second client tried to connect?</li>
+
+<li>If one computer is using TCP port 3490, can another computer use port 3490?
+<ul class="org-ul">
+<li>Yes, since ports are per computer and hence two computers can use the same port.</li>
+</ul></li>
+<li>Speculate about why ports exist. What functionality do they make possible that plain IP addresses do not?
+<ul class="org-ul">
+<li>The port helps to identify to which process the received data should be sent to on the host.</li>
+<li>A computer can have multiple simultaneous connections, all receiving data for different processes (mail, web, database, etc). How does the computer tell which data goes where? When the computer receives data, the port information allows it to give the data to the correct process. Eg, data with port 80 should go to the http process, data with port 25 should go to the mail processes and so on.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9f188ec" class="outline-2">
+<h2 id="org9f188ec"><span class="section-number-2">11.</span> Network definitions</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-orgb09f7e9" class="outline-3">
+<h3 id="orgb09f7e9"><span class="section-number-3">11.1.</span> IP Address</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li>A 4 byte unique number used to identify your computer on the internet.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8a8059f" class="outline-3">
+<h3 id="org8a8059f"><span class="section-number-3">11.2.</span> Port</h3>
+<div class="outline-text-3" id="text-11-2">
+<ul class="org-ul">
+<li>Programs talk through ports, which are numbered 0-65535 and are associated with the TCP or UDP protocols.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1389f8d" class="outline-3">
+<h3 id="org1389f8d"><span class="section-number-3">11.3.</span> Transmission Control Protocol (TCP)</h3>
+<div class="outline-text-3" id="text-11-3">
+<ul class="org-ul">
+<li>Responsible for reliable and inorder data transmission.</li>
+<li>Make packet switched network feel more like a circuit switched network.</li>
+<li>TCP used port numbers to identify senders and receivers of a data.</li>
+<li>In sockets API, TCP sockets are called stream sockets.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfe11dee" class="outline-3">
+<h3 id="orgfe11dee"><span class="section-number-3">11.4.</span> User Datagram Protocol (UDP)</h3>
+<div class="outline-text-3" id="text-11-4">
+<ul class="org-ul">
+<li>Lightweight sibling of TCP.</li>
+<li>Doesn't guarantee data will arrive, or that it will be in order, or that it won't be dublicated.</li>
+<li>If it arrives, it will be error free.</li>
+<li>In sockets API, UDP sockets are called datagram sockets.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8ccd667" class="outline-3">
+<h3 id="org8ccd667"><span class="section-number-3">11.5.</span> IPv6</h3>
+<div class="outline-text-3" id="text-11-5">
+<ul class="org-ul">
+<li>Since 4 bytes is enough to hold a unique address, the address size is increased to 16 bytes.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org377e580" class="outline-3">
+<h3 id="org377e580"><span class="section-number-3">11.6.</span> Network Address Translation (NAT)</h3>
+<div class="outline-text-3" id="text-11-6">
+<ul class="org-ul">
+<li>Private subnets with non globally unique addresses that get translated to globally unique addresses as they pass through the router.</li>
+<li>Private subnets commonly starts witha addresses 192.168.x.x or 10.x.x.x.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org904a1c0" class="outline-3">
+<h3 id="org904a1c0"><span class="section-number-3">11.7.</span> Router</h3>
+<div class="outline-text-3" id="text-11-7">
+<ul class="org-ul">
+<li>A specialized computer that forwards packets through the packet switching network. It inspects destination IP addresses to determine which route will get the packet closer to its goal.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org570ee1b" class="outline-3">
+<h3 id="org570ee1b"><span class="section-number-3">11.8.</span> Internet Protocol</h3>
+<div class="outline-text-3" id="text-11-8">
+<ul class="org-ul">
+<li>Responsible for identifying computers by IP address and using those address to route data to recipients through a variety of routers.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org454bd54" class="outline-3">
+<h3 id="org454bd54"><span class="section-number-3">11.9.</span> Local Area Network (LAN)</h3>
+<div class="outline-text-3" id="text-11-9">
+<ul class="org-ul">
+<li>A network where all the computers are effectively directly connected, not via a router.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org42f7688" class="outline-3">
+<h3 id="org42f7688"><span class="section-number-3">11.10.</span> Interface</h3>
+<div class="outline-text-3" id="text-11-10">
+<ul class="org-ul">
+<li>Physical networking hardware on a computer.</li>
+<li>A computer can have a number of interfaces, but most likely have two one for wired Ethernet interface and the other for wireless Ethernet interface.</li>
+<li>A router might have a large number of interfaces to be able to route packets to a large number of destinatins.</li>
+<li>Home router probably has two interfaces: one facing inward to your LAN and the other facing outward to the rest of the Internet.</li>
+<li>Each interface typically has one IP address and one MAC address.</li>
+<li>The OS names interfaces on your local machine, they might be something like wlan0 or eth2 or something else, depends of the hardware and the OS.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8975213" class="outline-3">
+<h3 id="org8975213"><span class="section-number-3">11.11.</span> Header</h3>
+<div class="outline-text-3" id="text-11-11">
+<ul class="org-ul">
+<li>Data that is prepended to some other data by a particular protocol, which contains appropriate information about that protocol.</li>
+<li>TCP header contains some error detection information, correction information and a source and destination port numbner.</li>
+<li>IP would include the source and the destination IP addresses.</li>
+<li>Ethernet would include the source and the destination MAC addresses.</li>
+<li>HTTP contains length of the data, the date modified and the status of the request.</li>
+<li>Analogous to adding a letter in an envelope.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7b85532" class="outline-3">
+<h3 id="org7b85532"><span class="section-number-3">11.12.</span> Network Adapter</h3>
+<div class="outline-text-3" id="text-11-12">
+<ul class="org-ul">
+<li>The hardware on the computer which does the network stuff, also called the network card.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6d83c45" class="outline-3">
+<h3 id="org6d83c45"><span class="section-number-3">11.13.</span> MAC address</h3>
+<div class="outline-text-3" id="text-11-13">
+<ul class="org-ul">
+<li>Ethernet interfaces have MAC addresses, which take the form aa:bb:cc:dd:ee:ff, where the fields are random one-byte hex numbers.</li>
+<li>They are 6 byte and must be unique on the LAN.</li>
+<li>When a network adapter is manufactured, it is given a unique MAC addresses that it keeps for life.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4b70876" class="outline-2">
+<h2 id="org4b70876"><span class="section-number-2">12.</span> Layered Network Model</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>When data is sent over the internet, the data is encapsulated in different layers of protocols.</li>
+<li>These protocols are responsible for different things, e.g, describing data, preserving data integrity, routing, local delivery, etc.</li>
+</ul>
+</div>
+<div id="outline-container-orgee7a844" class="outline-3">
+<h3 id="orgee7a844"><span class="section-number-3">12.1.</span> Layering of Protocols on Data</h3>
+<div class="outline-text-3" id="text-12-1">
+<p>
+Let’s consider what happens with an HTTP request.
+</p>
+
+<p>
+The web browser builds the HTTP request that looks like this:
+</p>
+
+<p>
+GET / HTTP/1.1
+Host: example.com
+Connection: close
+And that’s all the browser cares about. It doesn’t care about IP routing or TCP data integrity or Ethernet.
+</p>
+
+<p>
+It just says “Send this data to that computer on port 80”.
+</p>
+
+<p>
+The OS takes over and says, “OK, you asked me to send this over a stream-oriented socket, and I’m going to use the TCP protocol to do that and insure all the data arrives intact and in order.”
+</p>
+
+<p>
+So the OS takes the HTTP data and wraps it in a TCP header which includes the port number.
+</p>
+
+<p>
+And then the OS says, “And you wanted to send it to this remote computer whose IP address is 198.51.100.2, so we’ll use the IP protocol to do that.”
+</p>
+
+<p>
+And it takes the entire TCP-HTTP data and wraps it up an an IP header. So now we have data that looks like this: IP-TCP-HTTP.
+</p>
+
+<p>
+After that, the OS takes a look at its routing table and decides where to send the data next. Maybe the web server is on the LAN, conveniently. More likely, it’s somewhere else, so the data would be sent to the router for your house destined for the greater Internet.
+</p>
+
+<p>
+In either case, it’s going to send the data to a server on the LAN, or to your outbound router, also on the LAN. So it’s going to a computer on the LAN.
+</p>
+
+<p>
+And computers on the LAN have an Ethernet address (AKA MAC address–which stands for “Media Access Control”), so the sending OS looks up the MAC address that corresponds to the next destination IP address, whether that’s a local webserver or the outbound router. (This happens via a lookup in something called the ARP Cache, but we’ll get to that part of the story another time.)
+</p>
+
+<p>
+And it wraps the whole IP-TCP-HTTP packet in an Ethernet header, so it becomes Ethernet-IP-TCP-HTTP. The web request is still in there, buried under layers of protocols!
+</p>
+
+<p>
+And finally, the data goes out on the wire (even if it’s WiFi, we still say “on the wire”).
+</p>
+
+<p>
+The computer with the destination MAC address, listening carefully, sees the Ethernet packet on the wire and reads it in. (Ethernet packets are called Ethernet frames.)
+</p>
+
+<p>
+It strips off the Ethernet header, exposing the IP header below it. It looks at the destination IP address.
+</p>
+
+<p>
+If the inspecting computer is a server and it has that IP address, its OS strips off the IP header and looks deeper. (If it doesn’t have that IP address, something’s wrong and it discards the packet.)
+</p>
+
+<p>
+It looks at the TCP header and does all the TCP magic needed to make sure the data isn’t corrupted. If it is, it replies back with the magic TCP incantations, saying, “Hey, I need you to send that data again, please.”
+</p>
+
+<p>
+Note that the web browser or server never knows about this TCP conversation that’s happening. It’s all behind the scenes. For all it can see, the data is just magically arriving intact and in order.
+</p>
+
+<p>
+The reason is that they’re on a higher layer of the network. They don’t have to worry about routing or anything. The lower layers take care of it.
+</p>
+
+<p>
+If everything’s good with TCP, that header gets stripped and the OS is left with the HTTP data. It wakes up the process (the web server) that was waiting to read it, and gives it the HTTP data.
+</p>
+
+<p>
+But what if the destination Ethernet address was an intermediate router?
+</p>
+
+<p>
+The router strips off the Ethernet frame as always.
+</p>
+
+<p>
+The router looks at the destination IP address. It consults its routing table and decides to which interface to forward the packet.
+</p>
+
+<p>
+It sends it out to that interface, which wraps it up in another Ethernet frame and sends it to the next router in line.
+</p>
+
+<p>
+(Or maybe it’s not Ethernet! Ethernet is a protocol, and there are other low-level protocols in use with fiber optic lines and so on. This is part of the beauty of these layers of abstraction–you can switch protocols partway through transmission and the HTTP data above it is completely unaware that any such thing has happened.)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org444b004" class="outline-2">
+<h2 id="org444b004"><span class="section-number-2">13.</span> The Internet Layer Model</h2>
+<div class="outline-text-2" id="text-13">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Layer</th>
+<th scope="col" class="org-left">Responsibility</th>
+<th scope="col" class="org-left">Protocols</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Application</td>
+<td class="org-left">Structured application data</td>
+<td class="org-left">HTTP, FTP, TFTP, Telnet, SSH, SMTP, POP, IMAP</td>
+</tr>
+
+<tr>
+<td class="org-left">Transport</td>
+<td class="org-left">Data integrity, packet splitting, reassembly</td>
+<td class="org-left">TCP, UDP</td>
+</tr>
+
+<tr>
+<td class="org-left">Internet</td>
+<td class="org-left">Routing</td>
+<td class="org-left">IP, IP6, ICMP</td>
+</tr>
+
+<tr>
+<td class="org-left">Link</td>
+<td class="org-left">Physical, signal on wires</td>
+<td class="org-left">Ethernet, PPP, token ring</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>All programs that implement HTTP, FTP or SMTP can use TCP or UPD to transmit data.</li>
+<li>All data that's transmitted with TCP or UDP can use IP, IP6 for routing.</li>
+<li>All data that used IP, IP6 for routing can use Ethernet or PPP for going over the wire.</li>
+<li>When the data is being transmitted through the layers, the protocols add their own headers on top of everything else so far.</li>
+<li>Since there are other networks that aren't the Internet, there is a general model call the OSI model.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf1f31ce" class="outline-2">
+<h2 id="orgf1f31ce"><span class="section-number-2">14.</span> The ISO OSI Network Layer Model</h2>
+<div class="outline-text-2" id="text-14">
+<ul class="org-ul">
+<li>International Organization for Standardization Open Systems Interconnect model.</li>
+<li>OSI model is like the Internet model, but more granular.</li>
+<li>The Internet model maps to the OSI model, like so, with a single layer of the Internet model mapping to multiple layers of the OSI model.</li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">ISO OSI Layer</th>
+<th scope="col" class="org-left">Internet Layer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Application</td>
+<td class="org-left">Application</td>
+</tr>
+
+<tr>
+<td class="org-left">Presentation</td>
+<td class="org-left">Application</td>
+</tr>
+
+<tr>
+<td class="org-left">Session</td>
+<td class="org-left">Application</td>
+</tr>
+
+<tr>
+<td class="org-left">Transport</td>
+<td class="org-left">Transport</td>
+</tr>
+
+<tr>
+<td class="org-left">Network</td>
+<td class="org-left">Network</td>
+</tr>
+
+<tr>
+<td class="org-left">Data link</td>
+<td class="org-left">Link</td>
+</tr>
+
+<tr>
+<td class="org-left">Physical</td>
+<td class="org-left">Link</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org23b30c3" class="outline-3">
+<h3 id="org23b30c3"><span class="section-number-3">14.1.</span> Protocols</h3>
+<div class="outline-text-3" id="text-14-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">ISO OSI Layer</th>
+<th scope="col" class="org-left">Responsibility</th>
+<th scope="col" class="org-left">Protocols</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Application</td>
+<td class="org-left">Structured application data</td>
+<td class="org-left">HTTP, FTP, TFTP, Telnet, SMTP, POP, IMAP</td>
+</tr>
+
+<tr>
+<td class="org-left">Presentation</td>
+<td class="org-left">Encoding, Translation, Encryption, Compression</td>
+<td class="org-left">MIME, SSL/TLS, XDR</td>
+</tr>
+
+<tr>
+<td class="org-left">Session</td>
+<td class="org-left">Suspending, terminating, restarting sessions between computers</td>
+<td class="org-left">Sockets, TCP</td>
+</tr>
+
+<tr>
+<td class="org-left">Transport</td>
+<td class="org-left">Data Integrity, packet splitting and re assemply</td>
+<td class="org-left">TCP, UDP</td>
+</tr>
+
+<tr>
+<td class="org-left">Network</td>
+<td class="org-left">Routing</td>
+<td class="org-left">IP, IPv6, ICMP</td>
+</tr>
+
+<tr>
+<td class="org-left">Data link</td>
+<td class="org-left">Encapsulation into frames</td>
+<td class="org-left">Ethernet, PPP, SLIP</td>
+</tr>
+
+<tr>
+<td class="org-left">Physical</td>
+<td class="org-left">Physical, signals of wires</td>
+<td class="org-left">Ethernet physical layer, DSL, ISDN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orga777cb8" class="outline-2">
+<h2 id="orga777cb8"><span class="section-number-2">15.</span> Questions</h2>
+<div class="outline-text-2" id="text-15">
+<ul class="org-ul">
+<li>When a router sees an IP address, how does it know where to forward it?</li>
+<li>If an IPv4 address is 4 bytes, roughly how many different computers can that represent in total, assuming each computer has a unique IP address?</li>
+<li>Same question, except for IPv6 and its 16-byte addresses?</li>
+<li>Bonus question for stats nerds: The odds of winning the super lotto jackpot are approximately 300 million to 1. What are the odds of randomly picking my pre-selected 16-byte (128-bit) number?</li>
+<li>Speculate on why IP is above TCP in the layered model. Why does the TCP header go on before the IP header and not the other way around?</li>
+<li>If UDP is unreliable and TCP is reliable, speculate on why one might ever use UDP.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc1d2253" class="outline-2">
+<h2 id="orgc1d2253"><span class="section-number-2">16.</span> The Internet Protocol</h2>
+<div class="outline-text-2" id="text-16">
+<ul class="org-ul">
+<li>Protocol responsible for routing packets of data around the Internet, analogous to how the post office is responsible for routing letters aroung the mail network.</li>
+<li><i>Host</i> is just an another name for a computer.</li>
+<li>There are two versions of IP: version 4 (4 bytes) and version 6 (16 bytes).</li>
+</ul>
+</div>
+<div id="outline-container-org16a8fbf" class="outline-3">
+<h3 id="org16a8fbf"><span class="section-number-3">16.1.</span> Subnets</h3>
+<div class="outline-text-3" id="text-16-1">
+<ul class="org-ul">
+<li>Every IP address is split into two portions</li>
+<li>The initial bits of the IP identify the individual networks.</li>
+<li>The trailing bits identify the individual hosts on that network.</li>
+<li>These individual networks are called <i>subnets</i> and the number of hosts they can support depend on how many bits they're reserved for identifying the hosts on that subnet.</li>
+</ul>
+</div>
+<div id="outline-container-org9390a14" class="outline-4">
+<h4 id="org9390a14"><span class="section-number-4">16.1.1.</span> Example</h4>
+<div class="outline-text-4" id="text-16-1-1">
+<p>
+As a contrived non-Internet example, let’s look at an 8-bit “address”, and we’ll say the first 6 bits are the network number and the last 2 bits are the host number.
+</p>
+
+<p>
+So an address like this:
+</p>
+
+<p>
+00010111
+is split into two parts (because we said the first 6 bits were the network number):
+</p>
+
+<p>
+Network  Host
+--&#x2013;&#x2014;  -&#x2014;
+000101   11
+So this is network 5 (101 binary), host 3 (11 binary).
+</p>
+
+<p>
+The network part always comes before the host part.
+</p>
+
+<p>
+Note that if there are only two “host” bits, there can only be 4 hosts on the network, numbered 0, 1, 2, and 3 (or 00, 01, 10, and 11 in binary).
+</p>
+
+<p>
+And with IP, it would actually only be two hosts, because hosts with all zero bits or all one bits are reserved.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb33bf77" class="outline-3">
+<h3 id="orgb33bf77"><span class="section-number-3">16.2.</span> Additional IP layer protocols</h3>
+<div class="outline-text-3" id="text-16-2">
+<ul class="org-ul">
+<li>ICMP: Internet Control Message Protocol, a mechanism for communicating IP notes to talk about IP control metadata with one another.</li>
+<li>IPSec: Internet Protocol Security, encryption and authentication functionality.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5601696" class="outline-3">
+<h3 id="org5601696"><span class="section-number-3">16.3.</span> Private Networks</h3>
+<div class="outline-text-3" id="text-16-3">
+<p>
+There are private networks hidden behind routers that do not have globally unique IP addresses on their machines. (Though they do have unique addresses within the LAN itself.)
+</p>
+
+<p>
+This is made possible through the magic of a mechanism called NAT (Network Address Translation). But this is a story for the future.
+</p>
+
+<p>
+For now, let’s just pretend all our addresses are globally unique.
+</p>
+</div>
+</div>
+<div id="outline-container-org7d1675f" class="outline-3">
+<h3 id="org7d1675f"><span class="section-number-3">16.4.</span> Static versus Dynamic IP addr and DHCP</h3>
+<div class="outline-text-3" id="text-16-4">
+<p>
+If you have clients hitting your website, or you have a server that you want to SSH into repeatedly, you’ll need a static IP. This means you get a globally-unique IP address assigned to you and it never changes.
+</p>
+
+<p>
+This is like having a house number that never changes. If you need people to be able to find your house repeatedly, this needs to be the case.
+</p>
+
+<p>
+But since there are a limited number of IPv4 addresses, static IPs cost more money. Often an ISP will have a block of IPs on a subnet that they dynamically allocate on-demand.
+</p>
+
+<p>
+This means when you reboot your broadband modem, it might end up with a different public-facing IP address when it comes back to life. (Unless you’ve paid for a static IP.)
+</p>
+
+<p>
+Indeed, when you connect your laptop to WiFi, you also typically get a dynamic IP address. Your computer connects to the LAN and broadcasts a packet saying, “Hey, I’m here! Can anyone tell me my IP address? Pretty please with sugar on top?”
+</p>
+
+<p>
+And this is OK because people aren’t generally trying to connect to servers on your laptop. It’s usually the laptop that’s connecting to other servers.
+</p>
+
+<p>
+How does it work? On one of the servers on the LAN is a program that is listening for such requests, which conform to DHCP (the Dynamic Host Configuration Protocol). The DHCP server keeps track of which IP addresses on the subnet are already allocated for use, and which are free. It allocates a free one and sends back a DHCP response that has your laptop’s new IP address, as well as other data about the LAN your computer needs (like subnet mask, etc.).
+</p>
+
+<p>
+If you have WiFi at home, you very likely already have a DHCP server. Most routers come from your ISP with DHCP already set up, which is how your laptop gets its IP address on your LAN.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8556105" class="outline-2">
+<h2 id="org8556105"><span class="section-number-2">17.</span> IP4 and IP6</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+<a href="https://beej.us/guide/bgnet0/html/#the-internet-protocol-version-4">Refer documentation</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mklno</p>
+<p class="date">Created: 2024-08-20 Tue 09:30</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

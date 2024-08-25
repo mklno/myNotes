@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-08-20 Tue 08:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Essentialism - Notes from the book</title>
+<meta name="author" content="mklno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Essentialism - Notes from the book</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org62560d9">1. What is essentialism?</a></li>
+<li><a href="#org3a7179e">2. Why being an essentialist is important?</a></li>
+<li><a href="#orgf1e9eb2">3. Explore - How can we discern the essential few from the trivial many?</a>
+<ul>
+<li><a href="#org1d7aa0f">3.1. Escape - the perks of being unavailable</a></li>
+<li><a href="#org70aa8ed">3.2. Look - see what really matters</a></li>
+<li><a href="#org41b8b6d">3.3. Play - embrace the wisdom of the innerchild</a></li>
+<li><a href="#org64073b6">3.4. Sleep - protect the asset</a></li>
+<li><a href="#org109e819">3.5. Select - the power of extreme criteria</a></li>
+</ul>
+</li>
+<li><a href="#org457358f">4. Eliminate - How can we cut out the trivial many?</a>
+<ul>
+<li><a href="#org386696c">4.1. Clarify - one decision that makes a thousand</a></li>
+<li><a href="#org3403ca1">4.2. Dare - the power of a graceful no</a></li>
+<li><a href="#org6fd15a9">4.3. Uncommit - win big by cutting your losses</a></li>
+<li><a href="#org8a58ffc">4.4. Edit - the invisible art</a></li>
+<li><a href="#orgc42b384">4.5. Limit - the freedom of setting boundaries</a></li>
+</ul>
+</li>
+<li><a href="#org12dcd2c">5. Execution - How to make execution effortless?</a>
+<ul>
+<li><a href="#orge71b1e8">5.1. Buffer - the unfair advantage</a></li>
+<li><a href="#org1a300fa">5.2. Subract - bring forth more by removing obstacles</a></li>
+<li><a href="#orgc1a42ca">5.3. Progress - the power of small winds</a></li>
+<li><a href="#org2245bea">5.4. Flow - the genuis of routine</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org62560d9" class="outline-2">
+<h2 id="org62560d9"><span class="section-number-2">1.</span> What is essentialism?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Essentialism is not about how to get more thing done; it's about how to get the right things done. It doesn't mean just doing lesss for the sake of less either. It is about making the wiseest possible investment of your time and energy in order to operate at your highest point of contribution by doing what is essential. The way of the Essentialsist is the relentlesss pursuit of the less but better.
+</p>
+</div>
+</div>
+<div id="outline-container-org3a7179e" class="outline-2">
+<h2 id="org3a7179e"><span class="section-number-2">2.</span> Why being an essentialist is important?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The exponential increase in choices over the last decade, yet even in the midst of it, and perhaps because of it, we have lost sight of the most important ones. Due to this pheonomenon we have almost lost out ability to choose what is important and what it isn't. There is even a term coined by the Physcologists called 'decision fatigue': the more choices we are forced to make, the more the quality of our decisions deteriorates. Since, at the internet age almost everyone got an opinion it is important to be an Essentialist since its not just information overload; it is opinion overload as well. 
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1e9eb2" class="outline-2">
+<h2 id="orgf1e9eb2"><span class="section-number-2">3.</span> Explore - How can we discern the essential few from the trivial many?</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org1d7aa0f" class="outline-3">
+<h3 id="org1d7aa0f"><span class="section-number-3">3.1.</span> Escape - the perks of being unavailable</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Seclude yourself and be with yourself, be it 10 minutes a day, 2 weeks a years as Bill Gates does, 2 hours a day as Jeff does. It is essential to spend time with ourslef to think upon things which really matters to us. As today we are living in a world where we are never free of any distrations we almost forgot what boredom used to feel like. I personally felt boredom a long time ago to be honest I don't even remember the last time I felt bored. So, to conclude the author here aruges it is important to spend alone with ourself free from distractions and spend the time on thinking. 
+</p>
+</div>
+</div>
+<div id="outline-container-org70aa8ed" class="outline-3">
+<h3 id="org70aa8ed"><span class="section-number-3">3.2.</span> Look - see what really matters</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Keep a journal as it helps to pay attention to the signal in the noise.</li>
+<li>Get out in the field. A seemingly cost effective problem could not have been solved without identifying the root cause of the problem.</li>
+<li>Keep your eyes peels for abnormal details</li>
+<li>Clarify the question</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org41b8b6d" class="outline-3">
+<h3 id="org41b8b6d"><span class="section-number-3">3.3.</span> Play - embrace the wisdom of the innerchild</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+A non-essentialist thinks play is trivial, here the author argues that Play is indispensable part of being an Essentialist. Play as for an Essentialist plays a crucial role in exploration in mainly three ways.
+</p>
+<ul class="org-ul">
+<li>Play broadens the range of options available to us.</li>
+<li>Play act as an antidote to stress</li>
+<li>Play has a positive effect on the executive functions of the brain. Executive functions include planning, priotitizing, scheduling, anticipating, delegating, deciding, analyzing.</li>
+</ul>
+<p>
+The author concludes that Play doesn't just help us to explore what is essential. It is essential in and of itself.   
+</p>
+</div>
+</div>
+<div id="outline-container-org64073b6" class="outline-3">
+<h3 id="org64073b6"><span class="section-number-3">3.4.</span> Sleep - protect the asset</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+As we all know the most important assest of all is our health. In this chapter, the author argues the importance of being well rested to protect ourselves since it helps in recuperation, breeds creativity and helps in the highest levels of mental contribution. 
+</p>
+</div>
+</div>
+<div id="outline-container-org109e819" class="outline-3">
+<h3 id="org109e819"><span class="section-number-3">3.5.</span> Select - the power of extreme criteria</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+If the answer isn't a definite yes, then it should be a no; that's the main argument of this chapter.
+</p>
+<ul class="org-ul">
+<li>Over the 90 percent rule, the author argues that the very act of applying selective critera forces you to choose which perfect option to wait for, rather than letting  other people, or the universe, choose for you. By the 90 percent rule, when we given with a task, rate the relevance of the task from 0 to 100 if the rating is above 90 it is a definitive yes, if not should be a no.</li>
+<li>What if a seemingly good opportunity knocks your door, do you need to take it into account. In that case, the author asks to filer using a selective approach. According to which, first, write down the opportunity. Second, write down a list of threee minimum criteria the options would need to pass in order to be considered. Third, write down a list of three ideal or extreme criteria the options would need to pass in order to be considered. By definition, if the opportunity doesn't pass the first set of criteria, the answer is obviously no. But if it also doesn't pass two of your three extreme criteria, the answer is still no.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org457358f" class="outline-2">
+<h2 id="org457358f"><span class="section-number-2">4.</span> Eliminate - How can we cut out the trivial many?</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org386696c" class="outline-3">
+<h3 id="org386696c"><span class="section-number-3">4.1.</span> Clarify - one decision that makes a thousand</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+People thrive when there is a high level of clarity. Clarity of purpose so consistently predicts how people do their jobs. Motivation and cooperation deteriorate when there is a lack of purpose. When there is a serious lack of clarity about what you stand for and what your goals and roles are, you experience confustion, stress and frustration. So, what happens when people lack clarity. Here are two common pattern. 
+</p>
+
+<ul class="org-ul">
+<li>Playing Politics, instead of focusing their time and energies on making a high level of contribution, they put all their effort into games like attempting to look better that their peers. In our personal life, instead of doing something which is truly essential we overvalue non essentials like a nice car, or a house and even intangiles like the number of followers over social media.</li>
+<li>In the second pattern, people assume that it's all good which is actually bad. With no clear direction , people pursue the things that advance their own short term interests, with little awareness of how their activities contribute to the long term mission of the team as a whole. When individuals are involved in too many disparate activites - even good activities - they can fail to achieve thier essential mission.</li>
+</ul>
+
+<p>
+Here are two mission statements of NGOs, the first one is 'eliminate hunger in the world' and second one is 'to build 150 affordable, green, storm-resistant homes for families living in the lower 9th ward. The second one is much clearer  and the concreteness of the objective is real and that's what make it inspiring and also answers the question 'how will we know when we have succceeded?'
+</p>
+</div>
+</div>
+<div id="outline-container-org3403ca1" class="outline-3">
+<h3 id="org3403ca1"><span class="section-number-3">4.2.</span> Dare - the power of a graceful no</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+In this chapter, the author argues the various ways of saying no. So, the important lesson from this chapter is that it is important to be courageous and so NO and YES to things that really matter.
+</p>
+</div>
+</div>
+<div id="outline-container-org6fd15a9" class="outline-3">
+<h3 id="org6fd15a9"><span class="section-number-3">4.3.</span> Uncommit - win big by cutting your losses</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Sunk-cost bias is the tendency to continue to invest time, money, or engery into something we know is a losing proposition simply because we have already incurred, or sunk, a cost that cannot be recouped. But of course this can easily become a vicious cycle: the more we invest, the more determined we become to see it through and see our investment pay off. The more we invest in something, the harder it is to let go.
+</p>
+
+<ul class="org-ul">
+<li>Beware of the endowment traps, the endowment effect states that out tendency to undervalue things that aren't ours and to overvalue things because we already own them. The mere fact of ownership can make us value the objects more highly and made them less willing to part with them. When we feel we own an activity, it becomes harder to uncommit.</li>
+<li>Asking questions like 'If I did not have this opportunity, how much would I be willing to sacrifice in order to obtain it?', 'If I wasn't already involved in this project, how hard would I work to get on it?' might help ease this precess.</li>
+<li>Get over the fear of waste, as an adult we have been exposed to the idea of 'Don't waste' over our lifetime and hence we as adults are more vulnerable to the sunk cost bias than young children.</li>
+<li>Admit failture to begin success. There should be no shame in admitting to a mistake; after all, we really are only admitting that we are now wiser than we once were.</li>
+<li>Stop trying to force fit.</li>
+<li>Get a neutral second opinion</li>
+<li>Be aware of the current status of the project.</li>
+<li>Stop making casual committments</li>
+<li>Pause before you speak</li>
+<li>Get over the fear of missing out</li>
+<li>Run a reverse plot, in a reverse plot you test whether removing an initiative or an activity will have any negative consequences.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8a58ffc" class="outline-3">
+<h3 id="org8a58ffc"><span class="section-number-3">4.4.</span> Edit - the invisible art</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+A good editor is someone who uses deliberate subraction to actually add life to the ideas, setting, plot and characters. To state the words of Stephen King's 'Kill your darlings, kill your darlings, even when it breaks your egocentric little scribbler's heart, kill your darlings. We can apply editing in our life using the following ways.
+</p>
+
+<ul class="org-ul">
+<li>Cut out  options. While we are making decisions, deciding to cut options can be terrifying - but the truth is, it is the very essence of decision making. To write is human, to edit is divine.</li>
+<li>Condense. By condensing, saying it as clearly and consisely as possible. To be clear, condensing doesn't mean doing more at once, it simple means less waste. It means lowering the ratio of efforts to results, in our day to day life we need to shift the ratio of activity to meaning.</li>
+<li>Correct. By retrospecting and timely coming back to look at our core purpose can help in making our intent clear and hence correct. If they are incorrect, we can edit them.</li>
+<li>Edit less. The best surgeon is not the one who makes  the most incisions, it applied to editors as well. Sometimes having the discipline to leave certain things exactly as they are is the best use of their editorial judgement.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc42b384" class="outline-3">
+<h3 id="orgc42b384"><span class="section-number-3">4.5.</span> Limit - the freedom of setting boundaries</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+Boundaries are little like a walls of a sandcastle. The second we let one fall over, the rest of them come crashing down. If you don't set any boundaries - there won't be any. Or even worse, there will be boundaries, but they'll be set by default - or by another person - instead of by design. Boundaries are empowering, they protect time from being hijacked and often frees the burden of having to say no to things that further others objectives instead of their own. Clear boundaries allows us to proactively eliminate the deams from others that distract us from the true essentials. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org12dcd2c" class="outline-2">
+<h2 id="org12dcd2c"><span class="section-number-2">5.</span> Execution - How to make execution effortless?</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orge71b1e8" class="outline-3">
+<h3 id="orge71b1e8"><span class="section-number-3">5.1.</span> Buffer - the unfair advantage</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+As we all know that the future is uncertain, the only thing we can expect is the unexpected. Therefore, we can either wait for the moment and react to it or we can prepare. We can create a buffer.
+</p>
+
+<p>
+A buffer can be defined literally as something that prevents two things from coming to contact and harming each other. We can reduce the fruction of executing the essential in our work and lives simply by creating a buffer. We've all experienced how projects and commitments tend to expand - despite our best efforts to fill the amount of time alloted to them.
+</p>
+
+<ul class="org-ul">
+<li>Use extreme preparation. We could not predict the unexpected and hence prepare for the better.</li>
+<li>Add 50 percent to your time estimate. 'Planning fallacy' a term coined by Daniel Kahneman which refers to people's tendency to underestimate how long a task will take, even when they have actually done the task before. By simply adding a 50 percent buffer to the amount of time we estimated to complete a task can help us protect against being a non essentialist.</li>
+<li>Conduct scenario planning. Asking the following questions can help
+<ul class="org-ul">
+<li>What risks do we face and where?</li>
+<li>What is the worst case scenario?</li>
+<li>How can we reduce risks?</li>
+<li>What could be the impacts?</li>
+<li>What could be the social effects?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1a300fa" class="outline-3">
+<h3 id="org1a300fa"><span class="section-number-3">5.2.</span> Subract - bring forth more by removing obstacles</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+If you want to make incredible progress in running a production plant, you need you find the plant's constraint. Constraint's are the obstacles holding the whole system back. Even if we improve everything else in the plant without identifying the constraint, the plant will not materially improve. Here the author aruges that an Essentialist produces more, brings forth more by removing more instead of doing more.
+</p>
+
+<ul class="org-ul">
+<li>Be clear about the essential intent since it helps in removing the constraints</li>
+<li>Identify the slowest hiker, thereby making substantial progress.</li>
+<li>Remove the obstacle, it doesn't have to be hard or take a superhuman effort. Instead, start small and the momentum will naturally build.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc1a42ca" class="outline-3">
+<h3 id="orgc1a42ca"><span class="section-number-3">5.3.</span> Progress - the power of small winds</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+The way of the non-essentialist is to go big on everything: to try to do it all, have it all, fit it all in. The non-essentialist operates under the false logic that the more he strives, the more he will achieve, but the reality is, the more we reach for the starts, the harder it is to get ourselves off the ground. The way of the Essentialist is different. Instead of trying to accomplish it all - and all at once - and flaring out, the Essentialist stars small and celebrates progress.
+</p>
+
+<p>
+Research has shown that of all forms of human motivation the most effective one is progress. Because a small, concrete win creates momentum and affirms our faith in our further success. There is power in steadiness and repetition. The key is to start small, encourage progress, and celebrate small wins.
+</p>
+
+<ul class="org-ul">
+<li>Focus of minimal viable progress. Ask yourself, what is the smallest amount of progress that will be useful and valueable to the essential task we are trying to get done.</li>
+<li>Do the minimal viable prepartion. You can start small and early or start late and big. Early and small means starting at the earliest moment possible with the minimal possible time investment.</li>
+<li>Visually reward progress. When we start small and reward progress, we end up achieving more than when we set big, lofty and often impossible goals.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2245bea" class="outline-3">
+<h3 id="org2245bea"><span class="section-number-3">5.4.</span> Flow - the genuis of routine</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+The way of the non-essentialist is to think the essentials only get done when they are forced. That execution is a matter of raw effort alone. Your labour to make it happen. YOu push through. The way of the Essentialist is different. the Essentialist designs a routine that makes achieving what you have identified as essential to the default position. Yes, in some instances an Essentialist still has to work harl, but with the right routine in place each effort yields exponentially greater results. According to the researchers at Duke University in North Carolina, nearly 40 percent of our choices are deeply unconscious. 
+</p>
+
+<p>
+Routine is one of the most powerful tools for removing obstacles. As we repeatedly do a certain task the neurons, or nerve cells, make new connections through communication gateways called synapses. With repetition, the connections strengthen and it becomes easier for the brain to activate them. Our ability to execute the essential improves with practise, just like any other ability. This power of a routine grows out of our brain's ability to take over entirely until the process becomes fully unconscious.
+</p>
+
+<ul class="org-ul">
+<li>Overhaul your triggers. If we want to change our routine, we don't really need to change the behaviour. Rather, we need to find the cue that is triggering the non essential activity or behaviour and find a way to associate that same cue with something that is essential.</li>
+<li>Create new triggers.</li>
+<li>Do the most difficult thing first. We already have too much to think about. Why not eliminate some of them by establishing a routine. \</li>
+<li>Mix up routines. Doing the same things at the same time, day after day, can get boring. To avoid this kind of routine fatigue, there's not reason why we can't have different routines for different days of the week.</li>
+<li>Tackle your routines one by one. It is essential to start small and make progress rather than trying to overhaul multiple routines.</li>
+</ul>
+
+<p>
+k** Focus - what's important now?
+To operate at your highest level of contribution requires that you deliberately tune into what is important in the here and now. Instead of getting caught up rehashing the last play that went wrong, or spending their mental energy worrying about whether they are going to lose the game, neither of which is helpful or constructive, hence the author encourages the players to focus only on the play they are in right now.
+</p>
+
+<p>
+Non-essentialists tend to be preoccupied with past successes and failures, as well as future challenges and opportunities, that they miss the present moment. They become distracted. Unfocused. They aren't really there. The way of the Essentialist is t o tune into the present. To experience like in <i>kairos</i>, not just in <i>chronos</i>. To focus on the things that are truly important, not yesterday or tomorrow, but right now. A true Essentialist never attempts to do more than one thing at a time. 
+</p>
+<ul class="org-ul">
+<li>Figure out what is most important right now.</li>
+<li>Get the future out of your head</li>
+<li>Priortise</li>
+</ul>
+
+<p>
+As Hendry David Thoreau states, "I do believe in simplicity. It is astonishing as well as sad, how many trivial affairs even the wisest thinks he must attend to in a day; so simplify the problem of life, distinguish the necessary and the real. 
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mklno</p>
+<p class="date">Created: 2024-08-20 Tue 08:54</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

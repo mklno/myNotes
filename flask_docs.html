@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-08-22 Thu 17:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flask Docs</title>
+<meta name="author" content="mklno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Flask Docs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf978726">1. Flask</a></li>
+<li><a href="#org7de3b7c">2. Route and View functions</a></li>
+<li><a href="#orgb7520c5">3. The Request-Response Cycle</a></li>
+<li><a href="#org1aaf391">4. Request Dispatching</a></li>
+<li><a href="#org6ed6d3d">5. Request Hooks</a></li>
+<li><a href="#orgf3356b0">6. Responses</a></li>
+<li><a href="#orga5ef663">7. Templates</a></li>
+<li><a href="#org2594224">8. Links</a></li>
+<li><a href="#org9cf613b">9. Web Forms</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf978726" class="outline-2">
+<h2 id="orgf978726"><span class="section-number-2">1.</span> Flask</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>All flask applications must create an application instance.</li>
+<li>The web server passes all the requests from the clients to this object for handling, using a protocol called <i>Web Server Gateway Interface</i>.</li>
+<li>The application instance is an object of class Flask. It takes the name of the main module or package of the application as the argument.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">from flask import Flask
+app = Flask(__name__)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7de3b7c" class="outline-2">
+<h2 id="org7de3b7c"><span class="section-number-2">2.</span> Route and View functions</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>The association between a URL and the function that handles it is called a <i>route</i>.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">@app.route('/')
+def index():
+    return '&lt;h1&gt;Hello, World!&lt;/h1&gt;'
+</pre>
+</div>
+<ul class="org-ul">
+<li>The return value of the function is called the <i>response</i>.</li>
+<li>The function index() is called a <i>view function</i>.</li>
+<li>Dynamic component in flask</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">@app.route('user/&lt;name&gt;')
+def user(name):
+    return '&lt;h1&gt;Hello, %s!&lt;/h1&gt;' % name
+</pre>
+</div>
+<ul class="org-ul">
+<li>Dynamic component in routes are strings by default but can also be defined with a type. Example: '/user/&lt;int:id&gt;' - would match only URLs that have an integer in the id dynamic segment.</li>
+<li>Flask supports int, float, and path for routes. The path type alse represents a string but does not consider slashes as separators and instead considers them part of the dynamic component.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb7520c5" class="outline-2">
+<h2 id="orgb7520c5"><span class="section-number-2">3.</span> The Request-Response Cycle</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>When Flask receives a request from a client, it needs to make a few objects available to the view function that will handle it. A good example is a request object.</li>
+<li>The obvious way in which Flask could give a view function access to the request object is by sending it as an argument, but that would require every single view function in the application to have an extra argument. Things get more complicated if you consider that the request object is not the only object that the view functions might need to access to fulfill a request.</li>
+<li>Flask uses <i>contexts</i> to temporarity make certain objects globally accessible to avoid cluttering view functions with a bunch of arguments.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+        return '&lt;p&gt;%s&lt;/p&gt;' %request.headers
+
+if __name__ == '__main__':
+        app.run(debug=True)
+</pre>
+</div>
+<ul class="org-ul">
+<li>Note how in the above view function request is used as if it was a global variable.</li>
+<li>In reality, request cannot be global variable if you consider that in a multithreaded server the threads are working on different requests from different clients at the same time, so each thread need to see a different object in request.</li>
+<li>Contexts enables Flask to make certain variables gloablly accessible to a thread without interfering with the other threads.</li>
+<li>A thread is the smallest sequence of instructions that can be managed independently. It is common for a process to have multiple active threads, sometimes sharing resources such as memory or file handles. Mutlithreaded web servers start a pool of threads and select a thread from the pool to handle each incoming request.</li>
+<li>There are two types of context in Flask: application context and the request context.</li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Variable Name</th>
+<th scope="col" class="org-left">Context</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">current app</td>
+<td class="org-left">App Con</td>
+<td class="org-left">The application instance for the active application</td>
+</tr>
+
+<tr>
+<td class="org-left">g</td>
+<td class="org-left">App Con</td>
+<td class="org-left">An object used as temp storage for each request</td>
+</tr>
+
+<tr>
+<td class="org-left">request</td>
+<td class="org-left">Req Con</td>
+<td class="org-left">Contents of a HTTP request sent by the client as obj</td>
+</tr>
+
+<tr>
+<td class="org-left">session</td>
+<td class="org-left">Req Con</td>
+<td class="org-left">Dict, used to store values used between requests</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org1aaf391" class="outline-2">
+<h2 id="org1aaf391"><span class="section-number-2">4.</span> Request Dispatching</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>When the application receives a request from the client, it needs to know which view function to be invoked.</li>
+<li>Flask looks up the URL given in the request in the application's URL map, which contains a mapping of URLs to the view function that handle them.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; app.url_map
+Map([&lt;Rule <span style="color: #4682b4;">'/static/&lt;filename&gt;'</span> (GET, HEAD, OPTIONS) -&gt; static&gt;,
+ &lt;Rule <span style="color: #4682b4;">'/'</span> (GET, HEAD, OPTIONS) -&gt; index&gt;,
+ &lt;Rule <span style="color: #4682b4;">'/user/&lt;name&gt;'</span> (GET, HEAD, OPTIONS) -&gt; user&gt;,
+ &lt;Rule <span style="color: #4682b4;">'/user/&lt;userId&gt;'</span> (GET, HEAD, OPTIONS) -&gt; userId&gt;])
+</pre>
+</div>
+<ul class="org-ul">
+<li>Head, Options and Get are the request methods that are handled by the route.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6ed6d3d" class="outline-2">
+<h2 id="org6ed6d3d"><span class="section-number-2">5.</span> Request Hooks</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>Sometimes it is useful to execute code before or after each request is processed, eg: connection to database.</li>
+<li>Instead of duplicating the code in every view function, flask offers an option to register common functions to be invoke before or after a request is dispatched to a view function.</li>
+<li>Request hooks are implements as decorators.</li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Request Hooks</th>
+<th scope="col" class="org-left">Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">before first request</td>
+<td class="org-left">Register a function to run before the first req is handled</td>
+</tr>
+
+<tr>
+<td class="org-left">before request</td>
+<td class="org-left">Register a function to run before each request</td>
+</tr>
+
+<tr>
+<td class="org-left">after request</td>
+<td class="org-left">Register a function to run after each request, if no unhandled exceptions occurred</td>
+</tr>
+
+<tr>
+<td class="org-left">teardown request</td>
+<td class="org-left">Register a function to run after each request, even if unhandled exceptions occurred</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf3356b0" class="outline-2">
+<h2 id="orgf3356b0"><span class="section-number-2">6.</span> Responses</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>When Flask invokes a view function, it expects its return values to be the response of the request. In most cases, its just a string.</li>
+<li>The HTTP protocol requires more than a string as a response to the request such as a status code.</li>
+<li>By default, 200 is the sent by Flask. To add something else pass it as a second return value after the response text.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">@app.route('/')
+def index():
+    return '&lt;h1&gt;Bad request&lt;/h1&gt;', 400
+</pre>
+</div>
+<ul class="org-ul">
+<li>It can also take a third argument, a dictionary of headers that are added to the HTTP response.</li>
+<li>Instead of returning one, two, or three values as a tupe, Flask view functions have the option of returning a Response object.</li>
+<li>The <i>make response()</i> function takes one, two, or three arguments and returns as a Response object.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">from flask import make_response
+
+@app.route('/')
+def index():
+    response = make_response('&lt;h1&gt;This document carries a cookie!&lt;/h1&gt;')
+    response.set_cookie('answer', '42')
+    return response
+</pre>
+</div>
+<ul class="org-ul">
+<li>There is another special type of response called a redirect for redirecting.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">@app.route('/')
+def index():
+    return redirect('https://thekafkaa.online')
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga5ef663" class="outline-2">
+<h2 id="orga5ef663"><span class="section-number-2">7.</span> Templates</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>A template is a file that contains the text of a response, with placeholder variables for the dynamic parts that will be known only in the context of a request. The process that replaces the variables with actual vaues and returns a final response string is called rendering.</li>
+<li>Flask used Jinja2 for rendering.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">from flask import Flask, render_template
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html') // templates/index.html
+
+@add.route('/user/&lt;name&gt;')
+def user(name):
+    return render_templete('user.html', name = name)
+</pre>
+</div>
+<ul class="org-ul">
+<li>Jinja2 recognizes variables of any type, even comples types such as lists, dictionaries and objects.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;A value from a dictionary: {{ mydict['key'] }}.&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+&lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;A value from a list: {{ mylist[3] }}.&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+&lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;A value from a list with a variable index: {{ mylist[myintvar] }}.&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+&lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;A value from an object's method: {{ myobj.somemethod() }}.&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+</pre>
+</div>
+<ul class="org-ul">
+<li>Variable can be modified with filters which are added after the variable name with a pipe as separator.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;Hello, {{ name|capitalize }}.&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+</pre>
+</div>
+<ul class="org-ul">
+<li>Jinja also offers control stuructures. Following is how conditionals are done.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">{% if user %}
+    Hello, {{ user }}!
+{% else %}
+    Hello, Stranger!
+{% endif %}
+</pre>
+</div>
+<ul class="org-ul">
+<li>Following is a demonstrations of a for loop</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #e5e5e5; font-weight: bold;">ul</span>&gt;
+  {% for comment in comments %}
+        &lt;<span style="color: #e5e5e5; font-weight: bold;">li</span>&gt;{{ comment }}&lt;/<span style="color: #e5e5e5; font-weight: bold;">li</span>&gt;
+  {% endfor %}
+&lt;/<span style="color: #e5e5e5; font-weight: bold;">ul</span>&gt;
+</pre>
+</div>
+<ul class="org-ul">
+<li>Jinja also supports macros, which are similar to python code.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">{% macros render_comment(comment) %}
+    &lt;<span style="color: #e5e5e5; font-weight: bold;">li</span>&gt;{{ comment }}&lt;/<span style="color: #e5e5e5; font-weight: bold;">li</span>&gt;
+{% endmacros %}
+
+&lt;<span style="color: #e5e5e5; font-weight: bold;">ul</span>&gt;
+  {% for comment in comments %}
+        {{ render_comment(comment) }}
+  {% endfor %}
+&lt;/<span style="color: #e5e5e5; font-weight: bold;">ul</span>&gt;  
+</pre>
+</div>
+<ul class="org-ul">
+<li>To make macros more reusable, they can be stored in a standalone files that are then imported from all the templates that need them.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">{% import 'macros.html' as macros %}
+
+&lt;<span style="color: #e5e5e5; font-weight: bold;">ul</span>&gt;
+  {% for comment in comments %}
+        {{ macros.render_comment(comment) }}
+  {% endfor %}
+&lt;/<span style="color: #e5e5e5; font-weight: bold;">ul</span>&gt;
+</pre>
+</div>
+<ul class="org-ul">
+<li>Portions of template code that need to be repeated in several places can be stored in a separate file and included from all the templates to avoid repitition.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">{% include 'common.html' %}
+</pre>
+</div>
+<ul class="org-ul">
+<li>Jinja also provides template inheritance for powerful reuse, first a base template is created with the name base.html.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #e5e5e5; font-weight: bold;">html</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">head</span>&gt;
+    {% block head %}
+    &lt;<span style="color: #e5e5e5; font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">{% block title %}{% endblock %} - My application</span>&lt;/<span style="color: #e5e5e5; font-weight: bold;">title</span>&gt;
+    {% endblock %}
+  &lt;/<span style="color: #e5e5e5; font-weight: bold;">head</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">body</span>&gt;
+    {% block body %}
+    {% endblock %}
+  &lt;/<span style="color: #e5e5e5; font-weight: bold;">body</span>&gt;
+&lt;/<span style="color: #e5e5e5; font-weight: bold;">html</span>&gt;
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% blockbody %}
+&lt;<span style="color: #e5e5e5; font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Hello, World!</span>&lt;/<span style="color: #e5e5e5; font-weight: bold;">h1</span>&gt;
+{% endblock %}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2594224" class="outline-2">
+<h2 id="org2594224"><span class="section-number-2">8.</span> Links</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>Any application that has more than one route will invariably need to include links that connect the differnet pages, such as in a navigation bar.</li>
+<li>Writing the URLs as links directly in the template is trivial for simple routes, but for dynamic routes with variable portions it can get more complicated to build the URLs right in the template.</li>
+<li>To avoid these problem, Flask provies the urlfor() helper function, which generates URLs from the informatioon stored in the application's URL map.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">@app.route('/user/&lt;name&gt;')
+def user():
+    print(url_for('user', name=name)
+</pre>
+</div>
+<ul class="org-ul">
+<li>Using static file for a file url.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html">{% block head %}
+{{ super() }}
+&lt;<span style="color: #e5e5e5; font-weight: bold;">link</span> <span style="color: #e5e5e5;">rel</span>=<span style="color: #4682b4;">"shortcut icon"</span> <span style="color: #e5e5e5;">href</span>=<span style="color: #4682b4;">"{{ url_for('static', filename = 'favicon.ico') }}"</span>
+ <span style="color: #e5e5e5;">type</span>=<span style="color: #4682b4;">"image/x-icon"</span>&gt;
+&lt;<span style="color: #e5e5e5; font-weight: bold;">link</span> <span style="color: #e5e5e5;">rel</span>=<span style="color: #4682b4;">"icon"</span> <span style="color: #e5e5e5;">href</span>=<span style="color: #4682b4;">"{{ url_for('static', filename = 'favicon.ico') }}"</span>
+ <span style="color: #e5e5e5;">type</span>=<span style="color: #4682b4;">"image/x-icon"</span>&gt;
+{% endblock %}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9cf613b" class="outline-2">
+<h2 id="org9cf613b"><span class="section-number-2">9.</span> Web Forms</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>Though forms in Flask can be handled with the help of request object, it becomes tedious and repetitive to generate HTML code for forms and the validations of the submitted form data. Hence Flask-WTF extension is used.</li>
+<li>Cross Site Request Forgery attack occurs when a malicious website sends requests to a different website on which the victim is logged in. By default, Flask WTF protects forms agains CSRF.</li>
+<li>To implement CSRF, WTF needs the application to configure an encrytion key. Flask then uses this key to generate encrypted tokens that are used to verify the authenticity of requests with form data.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hard to guess string'
+</pre>
+</div>
+<ul class="org-ul">
+<li>app.config dictionary is a general purpose place to store configuration variables used by the framework, extensions or the applicaiton itself.</li>
+<li>When using Flask-WTF, each form is representd by a class that inherits from class Form.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-py">from flask_wtf import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
+
+class GetNameForm(Form):
+    name = StringField('What is your name?', validators=[Required()])
+    submit = SubmitField('Submit')
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mklno</p>
+<p class="date">Created: 2024-08-22 Thu 17:23</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

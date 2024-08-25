@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-08-22 Thu 17:18 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linked List</title>
+<meta name="author" content="mklno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Linked List</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgfef16e8">1. Singly linkedlist</a>
+<ul>
+<li><a href="#orgf68ad64">1.1. Structure of a node</a></li>
+<li><a href="#org5c73c94">1.2. Traversing a singly linkedlist</a></li>
+<li><a href="#org741dedf">1.3. Insertion in a singly linkedlist</a>
+<ul>
+<li><a href="#orge4988ff">1.3.1. Insert a node</a></li>
+<li><a href="#org79ec1af">1.3.2. Insert at the beginning</a></li>
+<li><a href="#orgd790fed">1.3.3. Insert in an empty list</a></li>
+<li><a href="#orgbcd94fb">1.3.4. Insert at the end</a></li>
+<li><a href="#orgf00cd44">1.3.5. Insert between nodes</a></li>
+</ul>
+</li>
+<li><a href="#orgeffc231">1.4. Deletion in a singly linkedlist</a>
+<ul>
+<li><a href="#orgb4d9408">1.4.1. Deletion of first node</a></li>
+<li><a href="#orgf59015a">1.4.2. Deletion of the only node</a></li>
+<li><a href="#orgb5e375f">1.4.3. Deletion in between the list nodes</a></li>
+</ul>
+</li>
+<li><a href="#org3cc039c">1.5. Reversing a linked list</a></li>
+</ul>
+</li>
+<li><a href="#orge63ca73">2. Doubly linked list</a>
+<ul>
+<li><a href="#org1cfbbaa">2.1. Structure of a doubly linkedlist</a></li>
+<li><a href="#org9df260b">2.2. Traversing a double linkedlist</a></li>
+<li><a href="#org3d88578">2.3. Insertion in a doubly linkedlist</a>
+<ul>
+<li><a href="#orgba2af57">2.3.1. Insertion at the beginning of the list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfef16e8" class="outline-2">
+<h2 id="orgfef16e8"><span class="section-number-2">1.</span> Singly linkedlist</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A single linkedlist is made up of nodes where each node has two parts, the
+first one is the info part that contains the actual data of the list and the
+second one is the link part that points to the next node of the list.
+</p>
+</div>
+<div id="outline-container-orgf68ad64" class="outline-3">
+<h3 id="orgf68ad64"><span class="section-number-3">1.1.</span> Structure of a node</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>{
+ <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">info</span>;
+ <span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">link</span>;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5c73c94" class="outline-3">
+<h3 id="org5c73c94"><span class="section-number-3">1.2.</span> Traversing a singly linkedlist</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>;
+p = start;
+<span style="color: #e5e5e5; font-weight: bold;">while</span>(p != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+  p = p-&gt;link;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org741dedf" class="outline-3">
+<h3 id="org741dedf"><span class="section-number-3">1.3.</span> Insertion in a singly linkedlist</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+There can be four cases while inserting a node in a linked list.
+</p>
+<ul class="org-ul">
+<li>Insertion at the beginning.</li>
+<li>Insertion in an empty list.</li>
+<li>Insertion at the end.</li>
+<li>Insertion in between the nodes.
+<ul class="org-ul">
+<li>Insertion after a node</li>
+<li>Insertion before a node</li>
+<li>Insertion at a given position</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orge4988ff" class="outline-4">
+<h4 id="orge4988ff"><span class="section-number-4">1.3.1.</span> Insert a node</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<div class="org-src-container">
+<pre class="src src-c">tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+tmp-&gt;info = data;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org79ec1af" class="outline-4">
+<h4 id="org79ec1af"><span class="section-number-4">1.3.2.</span> Insert at the beginning</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">tmp</span>;
+tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+tmp-&gt;info = data; <span style="color: #616161;">// </span><span style="color: #616161;">data is the value to be inserted</span>
+tmp-&gt;link = start;
+start = tmp;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd790fed" class="outline-4">
+<h4 id="orgd790fed"><span class="section-number-4">1.3.3.</span> Insert in an empty list</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">tmp</span>;
+tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+tmp-&gt;info = data;
+tmp-&gt;link = <span style="color: #e5e5e5; font-weight: bold;">NULL</span>; 
+start = tmp;
+</pre>
+</div>
+<p>
+Since start is null in an empty list, the first case which is the insert at the
+beginning also handles insert in an empty list.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbcd94fb" class="outline-4">
+<h4 id="orgbcd94fb"><span class="section-number-4">1.3.4.</span> Insert at the end</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<p>
+There are two statements which should be written for this insertion.
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #616161;">// </span><span style="color: #616161;">O-&gt;P-&gt;T</span>
+p-&gt;link = tmp;
+tmp-&gt;link = <span style="color: #e5e5e5; font-weight: bold;">NULL</span>;
+</pre>
+</div>
+<p>
+So in this case, we should have a pointer p pointing to the last node of the
+list. The only information about the linked list that we have is the pointer
+start. So we will traverse the list till the end to get the pointerp and then
+do the insertion. This is how we can obtain the pointer p.
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>;
+p = start;
+<span style="color: #e5e5e5; font-weight: bold;">while</span>(p-&gt;link != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+  p = p-&gt;link;
+}
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>, *<span style="color: #e5e5e5;">tmp</span>;
+tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+tmp-&gt;info = data;
+<span style="color: #e5e5e5; font-weight: bold;">while</span>(p-&gt;link != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+  p = p-&gt;link;
+}
+p-&gt;link = tmp;
+tmp = <span style="color: #e5e5e5; font-weight: bold;">NULL</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf00cd44" class="outline-4">
+<h4 id="orgf00cd44"><span class="section-number-4">1.3.5.</span> Insert between nodes</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<p>
+Suppose we have two nodes P and Q, to insert a new node between them we require
+the following two statements.
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #616161;">//</span><span style="color: #616161;">P-&gt;Q-&gt;R</span>
+<span style="color: #616161;">//</span><span style="color: #616161;">P-&gt;newNode-&gt;Q-&gt;R</span>
+
+tmp-&gt;link = p-&gt;link; <span style="color: #616161;">//</span><span style="color: #616161;">p-&gt;link is q, p points to q before inserting</span>
+p-&gt;link = tmp;
+</pre>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="org7fff749"></a>Insertion after a node<br />
+<div class="outline-text-5" id="text-1-3-5-1">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #616161;">// </span><span style="color: #616161;">P-&gt;Q-&gt;R</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">P-&gt;newNode-&gt;Q-&gt;R after the P node</span>
+<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>, *<span style="color: #e5e5e5;">tmp</span>;
+<span style="color: #e5e5e5; font-weight: bold;">while</span>(p != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+  <span style="color: #e5e5e5; font-weight: bold;">if</span>(p-&gt;info == item){
+    tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+    tmp-&gt;info = data;
+    tmp-&gt;link = p-&gt;link;
+    p-&gt;link = tmp;
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> start;
+  }
+  p = p-&gt;link;
+}
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org0a91151"></a>Insertion before a node<br />
+<div class="outline-text-5" id="text-1-3-5-2">
+<p>
+Here we need to insert the new node before the node Q. For writing the two
+statements of insetion
+</p>
+<div class="org-src-container">
+<pre class="src src-c">tmp-&gt;link = p-&gt;link;
+p-&gt;link = tmp;
+</pre>
+</div>
+<p>
+we need to find the pointer p which points to the predecessor of the node that
+contains item. Since item is present in q and we have to find pointer to node P.
+so here the condition for searching would be
+</p>
+<div class="org-src-container">
+<pre class="src src-c">p-&gt;link-&gt;info == item;
+</pre>
+</div>
+<p>
+and the condition for termination of loop would be
+</p>
+<div class="org-src-container">
+<pre class="src src-c">(p-&gt;link != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>)
+</pre>
+</div>
+<p>
+Hence to insert after a node as follows:
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>, *<span style="color: #e5e5e5;">tmp</span>;
+p = start;
+<span style="color: #e5e5e5; font-weight: bold;">while</span>(p-&gt;link != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+  <span style="color: #e5e5e5; font-weight: bold;">if</span>(p-&gt;link-&gt;info == item){
+    tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+    tmp-&gt;info = data;
+    tmp-&gt;link = p-&gt;link;
+    p-&gt;link = tmp;
+    <span style="color: #e5e5e5; font-weight: bold;">return</span>;
+  }
+  p = p-&gt;link;
+}
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org2557787"></a>Insert at a given position<br />
+<div class="outline-text-5" id="text-1-3-5-3">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5; font-weight: bold;">addAtPosition</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">start</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">data</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">pos</span>){
+  <span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>, *<span style="color: #e5e5e5;">tmp</span>;
+  tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+  tmp-&gt;info = data;
+  <span style="color: #e5e5e5; font-weight: bold;">if</span>(pos == 1){
+    tmp-&gt;link = start;
+    start = tmp;
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> start;
+  }
+  p = start;
+  <span style="color: #e5e5e5; font-weight: bold;">for</span>(<span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">i</span> = 1; i &lt; pos -1 &amp;&amp; p != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>; i++){
+    p = p-&gt;link;
+  }
+  <span style="color: #e5e5e5; font-weight: bold;">if</span> (p == <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+    <span style="color: #e5e5e5; font-weight: bold;">pritf</span>(<span style="color: #4682b4;">"There are less than %d elements"</span>, pos);
+  }
+  <span style="color: #e5e5e5; font-weight: bold;">else</span>{
+    tmp-&gt;link = p-&gt;link;
+    p-&gt;link = tmp;
+  }
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> start;
+}
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgeffc231" class="outline-3">
+<h3 id="orgeffc231"><span class="section-number-3">1.4.</span> Deletion in a singly linkedlist</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+For deletion of a node from linkedlist, the pointer are rearranged logically, to
+physically remove the node and return the memory occupied by it to the pool of
+available memory we need to use the function <code>free()</code>.
+There can be four cases while deleting an element from a list.
+</p>
+<ul class="org-ul">
+<li>Deletion of first node.</li>
+<li>Deletion of the only node.</li>
+<li>Deletion in between the list.</li>
+<li>Deletion at the end.</li>
+</ul>
+</div>
+<div id="outline-container-orgb4d9408" class="outline-4">
+<h4 id="orgb4d9408"><span class="section-number-4">1.4.1.</span> Deletion of first node</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #616161;">// </span><span style="color: #616161;">start-&gt;T-&gt;P</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">start-&gt;P</span>
+tmp = start; <span style="color: #616161;">// </span><span style="color: #616161;">note be deleted</span>
+start = start-&gt;link;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf59015a" class="outline-4">
+<h4 id="orgf59015a"><span class="section-number-4">1.4.2.</span> Deletion of the only node</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #616161;">// </span><span style="color: #616161;">start-&gt;T</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">start-&gt;NULL</span>
+tmp = start;
+start = <span style="color: #e5e5e5; font-weight: bold;">NULL</span>; <span style="color: #616161;">// </span><span style="color: #616161;">it can also be written as start = start-&gt;link;</span>
+</pre>
+</div>
+<p>
+Since start-&gt;link is the last node, it points to NULL. Hence this case also comes
+under the first case.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5e375f" class="outline-4">
+<h4 id="orgb5e375f"><span class="section-number-4">1.4.3.</span> Deletion in between the list nodes</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #616161;">// </span><span style="color: #616161;">P-&gt;T-&gt;Q</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">P-&gt;Q</span>
+</pre>
+</div>
+<p>
+Since node T is to be deleted and pointer tmp points to it and we have pointers
+p and q which points to P and Q respectively. For deletion of node T, we will
+just have to link the predecessor of T(node P) to the successor of T(node Q).
+</p>
+<div class="org-src-container">
+<pre class="src src-c">p-&gt;link = q
+<span style="color: #616161;">//</span><span style="color: #616161;">since the address of q is stored in tmp</span>
+p-&gt;link = tmp-&gt;link;
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>, *<span style="color: #e5e5e5;">tmp</span>;
+p = start;
+<span style="color: #e5e5e5; font-weight: bold;">while</span>(p-&gt;link != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+  <span style="color: #e5e5e5; font-weight: bold;">if</span>(p-&gt;link-&gt;info == data){
+    tmp = p-&gt;link;
+    p-&gt;link = tmp-&gt;link;
+    <span style="color: #e5e5e5; font-weight: bold;">free</span>(tmp);
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> start;
+  }
+  p = p-&gt;link;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3cc039c" class="outline-3">
+<h3 id="org3cc039c"><span class="section-number-3">1.5.</span> Reversing a linked list</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #616161;">// </span><span style="color: #616161;">P-&gt;Q-&gt;R-&gt;S-&gt;T</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">T-&gt;S-&gt;R-&gt;Q-&gt;P</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5; font-weight: bold;">reverse</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">start</span>){
+  <span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">prev</span>, *<span style="color: #e5e5e5;">ptr</span>, *<span style="color: #e5e5e5;">next</span>;
+  prev = <span style="color: #e5e5e5; font-weight: bold;">NULL</span>;
+  prt = start;
+  <span style="color: #e5e5e5; font-weight: bold;">while</span>(ptr != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+    next = ptr-&gt;link;
+    ptr-&gt;link = prev;
+    prev = ptr;
+    ptr = next;;
+  }
+  start = prev;
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> start;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge63ca73" class="outline-2">
+<h2 id="orge63ca73"><span class="section-number-2">2.</span> Doubly linked list</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Doubly linked list or two way linkedlist is a linkedlist in which each node has
+two pointers. One of these pointers points to the next node and the other points
+to the previous node.
+The drawback of singly list is that when we want the address of the previous node
+then we have no was of doing this except repeating the traversal from the
+starting node.
+</p>
+</div>
+<div id="outline-container-org1cfbbaa" class="outline-3">
+<h3 id="org1cfbbaa"><span class="section-number-3">2.1.</span> Structure of a doubly linkedlist</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The structure for a node of a doubly linked list can be declared as follows.
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>{
+  <span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">prev</span>;
+  <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">info</span>;
+  <span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">next</span>;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9df260b" class="outline-3">
+<h3 id="org9df260b"><span class="section-number-3">2.2.</span> Traversing a double linkedlist</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The function for traversal is similar as singly linkedlist.
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-style: italic;">void</span> <span style="color: #e5e5e5; font-weight: bold;">display</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">start</span>){
+  <span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">p</span>;
+  <span style="color: #e5e5e5; font-weight: bold;">if</span> (start == <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+    <span style="color: #e5e5e5; font-weight: bold;">printf</span>(<span style="color: #4682b4;">"List is empty\n"</span>);
+  }
+  p = start;
+  <span style="color: #e5e5e5; font-weight: bold;">printf</span>(<span style="color: #4682b4;">"The elements in the list is:\n"</span>);
+  <span style="color: #e5e5e5; font-weight: bold;">while</span>(p != <span style="color: #e5e5e5; font-weight: bold;">NULL</span>){
+    <span style="color: #e5e5e5; font-weight: bold;">printf</span>(<span style="color: #4682b4;">"%d\n"</span>, p-&gt;info);
+    p = p-&gt;next;
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3d88578" class="outline-3">
+<h3 id="org3d88578"><span class="section-number-3">2.3.</span> Insertion in a doubly linkedlist</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+We have four cases of insertion in a doubly linkedlist
+</p>
+<ul class="org-ul">
+<li>Insertion at the beginning of the list.</li>
+<li>Insertion in an empty list.</li>
+<li>Insertion at the end of the list.</li>
+<li>Insertion in between the nodes.</li>
+</ul>
+</div>
+<div id="outline-container-orgba2af57" class="outline-4">
+<h4 id="orgba2af57"><span class="section-number-4">2.3.1.</span> Insertion at the beginning of the list</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5; font-weight: bold;">addAtBegin</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">start</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">data</span>){
+  <span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *<span style="color: #e5e5e5;">tmp</span>;
+  tmp = (<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span> *)<span style="color: #e5e5e5; font-weight: bold;">malloc</span>(<span style="color: #e5e5e5; font-weight: bold;">sizeof</span>(<span style="color: #e5e5e5; font-weight: bold;">struct</span> <span style="color: #e5e5e5; font-style: italic;">node</span>));
+  tmp-&gt;info = data;
+  <span style="color: #616161;">// </span><span style="color: #616161;">since tmp is the first node, its previous is null</span>
+  tmp-&gt;prev = <span style="color: #e5e5e5; font-weight: bold;">NULL</span>;
+  <span style="color: #616161;">// </span>
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mklno</p>
+<p class="date">Created: 2024-08-22 Thu 17:18</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
