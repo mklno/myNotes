@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-08-28 Wed 15:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Javascript Notes - Mapty Project</title>
+<meta name="author" content="mklno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Javascript Notes - Mapty Project</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org511ef4f">1. How to Plan a Web Project</a></li>
+<li><a href="#org5846776">2. Using the Geolocation API</a></li>
+<li><a href="#org418ccee">3. Displaying a Map using Leaflet Library</a></li>
+<li><a href="#org8d33860">4. Displaying Map Marker</a></li>
+<li><a href="#org9d00b83">5. Rendering Form input</a></li>
+<li><a href="#orgb86c3da">6. Project Architecture</a></li>
+<li><a href="#org0183d27">7. Refactoring for Project Architecture</a></li>
+<li><a href="#org30b792b">8. Managing workout data: creating classes</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org511ef4f" class="outline-2">
+<h2 id="org511ef4f"><span class="section-number-2">1.</span> How to Plan a Web Project</h2>
+<div class="outline-text-2" id="text-1">
+
+<div id="orgf817784" class="figure">
+<p><img src="project-planning-1.jpg" alt="project-planning-1.jpg" />
+</p>
+</div>
+
+
+<div id="orgcb95a54" class="figure">
+<p><img src="project-planning-2.jpg" alt="project-planning-2.jpg" />
+</p>
+</div>
+
+
+<div id="orgabb31ce" class="figure">
+<p><img src="how-to-plan-a-web-project-1.jpg" alt="how-to-plan-a-web-project-1.jpg" />
+</p>
+</div>
+
+
+<div id="org215ac6f" class="figure">
+<p><img src="how-to-plan-a-web-project-2.jpg" alt="how-to-plan-a-web-project-2.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5846776" class="outline-2">
+<h2 id="org5846776"><span class="section-number-2">2.</span> Using the Geolocation API</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">if</span> (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">position</span>) {
+      <span style="color: #e5e5e5; font-weight: bold;">const</span> { latitude, longitude } = position.coords;
+      console.log(latitude, longitude);
+      console.log(<span style="color: #4682b4;">`https://www.google.co.in/maps/@${latitude},${longitude},14z`</span>);
+    },
+    <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+      console.log(<span style="color: #4682b4;">'Error'</span>);
+    }
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org418ccee" class="outline-2">
+<h2 id="org418ccee"><span class="section-number-2">3.</span> Displaying a Map using Leaflet Library</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">if</span> (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">position</span>) {
+      <span style="color: #e5e5e5; font-weight: bold;">const</span> { latitude, longitude } = position.coords;
+      console.log(latitude, longitude);
+      console.log(
+        <span style="color: #4682b4;">`https://www.google.co.in/maps/@${latitude},${longitude},14z`</span>
+      );
+        <span style="color: #616161;">// </span><span style="color: #616161;">From the Leaflet docs</span>
+      <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">map</span> = L.map(<span style="color: #4682b4;">'map'</span>).setView([latitude, longitude], 13);
+
+      L.tileLayer(<span style="color: #4682b4;">'https://tile.openstreetmap.org/{z}/{x}/{y}.png'</span>, {
+        attribution:
+          <span style="color: #4682b4;">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span>,
+      }).addTo(map);
+
+      L.marker([latitude, longitude])
+        .addTo(map)
+        .bindPopup(<span style="color: #4682b4;">'A pretty CSS popup.&lt;br&gt; Easily customizable.'</span>)
+        .openPopup();
+    },
+    <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+      console.log(<span style="color: #4682b4;">'Error'</span>);
+    }
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8d33860" class="outline-2">
+<h2 id="org8d33860"><span class="section-number-2">4.</span> Displaying Map Marker</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-js">    <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">map</span> = L.map(<span style="color: #4682b4;">'map'</span>).setView([latitude, longitude], 13);
+
+    L.tileLayer(<span style="color: #4682b4;">'https://tile.openstreetmap.org/{z}/{x}/{y}.png'</span>, {
+      attribution:
+        <span style="color: #4682b4;">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span>,
+    }).addTo(map);
+    map.on(<span style="color: #4682b4;">'click'</span>, <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">mapEvent</span>) {
+      L.marker(Object.values(mapEvent.latlng))
+        .addTo(map)
+        .bindPopup(
+          L.popup({
+            maxWidth: 250,
+            minWidth: 100,
+            autoClose: <span style="color: #e5e5e5; font-weight: bold;">false</span>,
+            closeOnClick: <span style="color: #e5e5e5; font-weight: bold;">false</span>,
+            className: <span style="color: #4682b4;">'running-popup'</span>,
+          })
+        )
+        .setPopupContent(<span style="color: #4682b4;">'Workout'</span>)
+        .openPopup();
+    });
+  },
+  <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+    console.log(<span style="color: #4682b4;">'Error'</span>);
+  }
+);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9d00b83" class="outline-2">
+<h2 id="org9d00b83"><span class="section-number-2">5.</span> Rendering Form input</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-js">form.addEventListener(<span style="color: #4682b4;">'submit'</span>, <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">e</span>) {
+  e.preventDefault();
+  inputCadence.value =
+    inputDistance.value =
+    inputDuration.value =
+    inputElevation.value =
+      <span style="color: #4682b4;">''</span>;
+  L.marker(Object.values(mapEvent.latlng))
+    .addTo(map)
+    .bindPopup(
+      L.popup({
+        maxWidth: 250,
+        minWidth: 100,
+        autoClose: <span style="color: #e5e5e5; font-weight: bold;">false</span>,
+        closeOnClick: <span style="color: #e5e5e5; font-weight: bold;">false</span>,
+        className: <span style="color: #4682b4;">'running-popup'</span>,
+      })
+    )
+    .setPopupContent(<span style="color: #4682b4;">'Workout'</span>)
+    .openPopup();
+});
+
+inputType.addEventListener(<span style="color: #4682b4;">'change'</span>, <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+  inputElevation.closest(<span style="color: #4682b4;">'.form__row'</span>).classList.toggle(<span style="color: #4682b4;">'form__row--hidden'</span>);
+  inputCadence.closest(<span style="color: #4682b4;">'.form__row'</span>).classList.toggle(<span style="color: #4682b4;">'form__row--hidden'</span>);
+});
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb86c3da" class="outline-2">
+<h2 id="orgb86c3da"><span class="section-number-2">6.</span> Project Architecture</h2>
+<div class="outline-text-2" id="text-6">
+
+<div id="orga597447" class="figure">
+<p><img src="project-architecture-1.jpg" alt="project-architecture-1.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0183d27" class="outline-2">
+<h2 id="org0183d27"><span class="section-number-2">7.</span> Refactoring for Project Architecture</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> App {
+  #map;
+  #mapEvent;
+  constructor() {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>._getPosition();
+    form.addEventListener(<span style="color: #4682b4;">'submit'</span>, <span style="color: #e5e5e5; font-weight: bold;">this</span>._newWorkout.bind(<span style="color: #e5e5e5; font-weight: bold;">this</span>));
+    inputType.addEventListener(<span style="color: #4682b4;">'change'</span>, <span style="color: #e5e5e5; font-weight: bold;">this</span>._toggleElevationField);
+  }
+
+  _getPosition() {
+    <span style="color: #e5e5e5; font-weight: bold;">if</span> (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        <span style="color: #e5e5e5; font-weight: bold;">this</span>._loadMap.bind(<span style="color: #e5e5e5; font-weight: bold;">this</span>),
+        <span style="color: #e5e5e5; font-weight: bold;">function</span> () {
+          console.log(<span style="color: #4682b4;">'Error'</span>);
+        }
+      );
+    }
+  }
+
+  _loadMap(position) {
+    <span style="color: #e5e5e5; font-weight: bold;">const</span> { latitude, longitude } = position.coords;
+    console.log(latitude, longitude);
+    console.log(<span style="color: #4682b4;">`https://www.google.co.in/maps/@${latitude},${longitude},14z`</span>);
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.#map = L.map(<span style="color: #4682b4;">'map'</span>).setView([latitude, longitude], 13);
+
+    L.tileLayer(<span style="color: #4682b4;">'https://tile.openstreetmap.org/{z}/{x}/{y}.png'</span>, {
+      attribution:
+        <span style="color: #4682b4;">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span>,
+    }).addTo(<span style="color: #e5e5e5; font-weight: bold;">this</span>.#map);
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.#map.on(<span style="color: #4682b4;">'click'</span>, <span style="color: #e5e5e5; font-weight: bold;">this</span>._showForm.bind(<span style="color: #e5e5e5; font-weight: bold;">this</span>));
+  }
+
+  _showForm(mapE) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.#mapEvent = mapE;
+    form.classList.remove(<span style="color: #4682b4;">'hidden'</span>);
+    inputDistance.focus();
+  }
+
+  _toggleElevationField() {
+    inputElevation.closest(<span style="color: #4682b4;">'.form__row'</span>).classList.toggle(<span style="color: #4682b4;">'form__row--hidden'</span>);
+    inputCadence.closest(<span style="color: #4682b4;">'.form__row'</span>).classList.toggle(<span style="color: #4682b4;">'form__row--hidden'</span>);
+  }
+
+  _newWorkout(e) {
+    e.preventDefault();
+    inputCadence.value =
+      inputDistance.value =
+      inputDuration.value =
+      inputElevation.value =
+        <span style="color: #4682b4;">''</span>;
+    <span style="color: #e5e5e5; font-weight: bold;">const</span> { lat, lng } = <span style="color: #e5e5e5; font-weight: bold;">this</span>.#mapEvent.latlng;
+    L.marker([lat, lng])
+      .addTo(<span style="color: #e5e5e5; font-weight: bold;">this</span>.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: <span style="color: #e5e5e5; font-weight: bold;">false</span>,
+          closeOnClick: <span style="color: #e5e5e5; font-weight: bold;">false</span>,
+          className: <span style="color: #4682b4;">'running-popup'</span>,
+        })
+      )
+      .setPopupContent(<span style="color: #4682b4;">'Workout'</span>)
+      .openPopup();
+  }
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">app</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">App</span>();
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org30b792b" class="outline-2">
+<h2 id="org30b792b"><span class="section-number-2">8.</span> Managing workout data: creating classes</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">class</span> Workout {
+  constructor(coords, distance, duration) {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.coords = coords;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.distance = distance;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.duration = duration;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.date = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">Date</span>();
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.id = (<span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">Date</span>().getTime() + <span style="color: #4682b4;">''</span>).slice(-10);
+  }
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">class</span> Running <span style="color: #e5e5e5; font-weight: bold;">extends</span> Workout {
+  constructor(coords, distance, duration, cadence) {
+    <span style="color: #e5e5e5; font-weight: bold;">super</span>(coords, distance, duration);
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.cadence = cadence;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.calcPace();
+  }
+  calcPace() {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.pace = <span style="color: #e5e5e5; font-weight: bold;">this</span>.duration / <span style="color: #e5e5e5; font-weight: bold;">this</span>.distance;
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>.pace;
+  }
+}
+<span style="color: #e5e5e5; font-weight: bold;">class</span> Cycling <span style="color: #e5e5e5; font-weight: bold;">extends</span> Workout {
+  constructor(coords, distance, duration, elevationGain) {
+    <span style="color: #e5e5e5; font-weight: bold;">super</span>(coords, distance, duration);
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.elevationGain = elevationGain;
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.calcSpeed();
+  }
+  calcSpeed() {
+    <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed = <span style="color: #e5e5e5; font-weight: bold;">this</span>.distance / (<span style="color: #e5e5e5; font-weight: bold;">this</span>.duration / 60);
+    <span style="color: #e5e5e5; font-weight: bold;">return</span> <span style="color: #e5e5e5; font-weight: bold;">this</span>.speed;
+  }
+}
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">run</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">Running</span>([23, -34], 5, 24, 178);
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">cycle</span> = <span style="color: #e5e5e5; font-weight: bold;">new</span> <span style="color: #e5e5e5; font-style: italic;">Cycling</span>([234, 21], 3, 15, 187);
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mklno</p>
+<p class="date">Created: 2024-08-28 Wed 15:09</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

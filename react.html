@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-09-05 Thu 19:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>React</title>
+<meta name="author" content="mklno" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">React</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org522d546">1. A first look at React</a>
+<ul>
+<li><a href="#org8e61385">1.1. Why do frondend frameworks exist?</a></li>
+<li><a href="#org7f9beaa">1.2. What is React?</a></li>
+</ul>
+</li>
+<li><a href="#org7c5c8b7">2. Working with Components, Props and JSX</a>
+<ul>
+<li><a href="#org862334d">2.1. Rendering the Root Component and Strict Mode</a></li>
+<li><a href="#org55aa02c">2.2. Components as Building Blocks</a></li>
+<li><a href="#orgff0ca90">2.3. Creating and Reusing Components</a></li>
+<li><a href="#orge76cc2c">2.4. What is JSX?</a></li>
+<li><a href="#org1f4e977">2.5. Separation of Concerns</a></li>
+<li><a href="#org181ed76">2.6. Styling React Applications</a></li>
+<li><a href="#org849e359">2.7. Passing and Receiving Props</a></li>
+<li><a href="#org0f69694">2.8. Props, Immutability and One way data flow</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org522d546" class="outline-2">
+<h2 id="org522d546"><span class="section-number-2">1.</span> A first look at React</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org8e61385" class="outline-3">
+<h3 id="org8e61385"><span class="section-number-3">1.1.</span> Why do frondend frameworks exist?</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<img src="why-do-frondend-frameworks-exist-1.jpg" alt="why-do-frondend-frameworks-exist-1.jpg" />
+<img src="why-do-frondend-frameworks-exist-2.jpg" alt="why-do-frondend-frameworks-exist-2.jpg" />
+<img src="why-do-frondend-frameworks-exist-3.jpg" alt="why-do-frondend-frameworks-exist-3.jpg" />
+<img src="why-do-frondend-frameworks-exist-4.jpg" alt="why-do-frondend-frameworks-exist-4.jpg" />
+</p>
+</div>
+</div>
+<div id="outline-container-org7f9beaa" class="outline-3">
+<h3 id="org7f9beaa"><span class="section-number-3">1.2.</span> What is React?</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>A Javascript Library for builing user interfaces.</li>
+<li>Extremely popular, declarative, component based, state driven, javascript library for building interfaces build by Facebook.</li>
+</ul>
+<p>
+<img src="what-is-react-1.jpg" alt="what-is-react-1.jpg" />
+<img src="what-is-react-2.jpg" alt="what-is-react-2.jpg" />
+<img src="what-is-react-3.jpg" alt="what-is-react-3.jpg" />
+<img src="what-is-react-4.jpg" alt="what-is-react-4.jpg" />
+<img src="what-is-react-5.jpg" alt="what-is-react-5.jpg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7c5c8b7" class="outline-2">
+<h2 id="org7c5c8b7"><span class="section-number-2">2.</span> Working with Components, Props and JSX</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org862334d" class="outline-3">
+<h3 id="org862334d"><span class="section-number-3">2.1.</span> Rendering the Root Component and Strict Mode</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">import</span> React from <span style="color: #4682b4;">"react"</span>;
+<span style="color: #e5e5e5; font-weight: bold;">import</span> ReactDOM from <span style="color: #4682b4;">"react-dom/client"</span>;
+
+<span style="color: #e5e5e5; font-weight: bold;">function</span> <span style="color: #e5e5e5; font-weight: bold;">App</span>() {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> &lt;<span style="color: #e5e5e5; font-weight: bold;">div</span>&gt;<span style="color: #d3d3d3; background-color: #000000;">Hello React</span>&lt;/<span style="color: #e5e5e5; font-weight: bold;">div</span>&gt;;
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">root</span> = ReactDOM.createRoot(document.getElementById(<span style="color: #4682b4;">"root"</span>));
+root.render(&lt;<span style="color: #e5e5e5; font-weight: bold;">App</span> /&gt;);
+</pre>
+</div>
+<ul class="org-ul">
+<li>Using strict mode just renders the components twice.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">import</span> React from <span style="color: #4682b4;">"react"</span>;
+<span style="color: #e5e5e5; font-weight: bold;">import</span> ReactDOM from <span style="color: #4682b4;">"react-dom/client"</span>;
+
+<span style="color: #e5e5e5; font-weight: bold;">function</span> <span style="color: #e5e5e5; font-weight: bold;">App</span>() {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> &lt;<span style="color: #e5e5e5; font-weight: bold;">div</span>&gt;<span style="color: #d3d3d3; background-color: #000000;">Hello React</span>&lt;/<span style="color: #e5e5e5; font-weight: bold;">div</span>&gt;;
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">root</span> = ReactDOM.createRoot(document.getElementById(<span style="color: #4682b4;">"root"</span>));
+root.render(
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">React.StrictMode</span>&gt;
+<span style="color: #d3d3d3; background-color: #000000;">    </span>&lt;<span style="color: #e5e5e5; font-weight: bold;">App</span> /&gt;
+<span style="color: #d3d3d3; background-color: #000000;">  </span>&lt;/<span style="color: #e5e5e5; font-weight: bold;">React.StrictMode</span>&gt;
+);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org55aa02c" class="outline-3">
+<h3 id="org55aa02c"><span class="section-number-3">2.2.</span> Components as Building Blocks</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<img src="components-as-building-blocks-1.jpg" alt="components-as-building-blocks-1.jpg" />
+<img src="components-as-building-blocks-2.jpg" alt="components-as-building-blocks-2.jpg" />
+</p>
+</div>
+</div>
+<div id="outline-container-orgff0ca90" class="outline-3">
+<h3 id="orgff0ca90"><span class="section-number-3">2.3.</span> Creating and Reusing Components</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>In React, we can create components as a function and then reuse it as many time as we want.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">function</span> <span style="color: #e5e5e5; font-weight: bold;">App</span>() {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> (
+    &lt;div&gt;
+      &lt;h1&gt;Hello React&lt;/h1&gt;
+      &lt;Pizza /&gt;
+      &lt;Pizza /&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span style="color: #e5e5e5; font-weight: bold;">function</span> <span style="color: #e5e5e5; font-weight: bold;">Pizza</span>() {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> &lt;h2&gt;hello&lt;/h2&gt;;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge76cc2c" class="outline-3">
+<h3 id="orge76cc2c"><span class="section-number-3">2.4.</span> What is JSX?</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+<img src="what-is-jsx-1.jpg" alt="what-is-jsx-1.jpg" />
+<img src="what-is-jsx-2.jpg" alt="what-is-jsx-2.jpg" />
+</p>
+</div>
+</div>
+<div id="outline-container-org1f4e977" class="outline-3">
+<h3 id="org1f4e977"><span class="section-number-3">2.5.</span> Separation of Concerns</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+<img src="separation-of-concerns-1.jpg" alt="separation-of-concerns-1.jpg" />
+<img src="separation-of-concerns-2.jpg" alt="separation-of-concerns-2.jpg" />
+</p>
+</div>
+</div>
+<div id="outline-container-org181ed76" class="outline-3">
+<h3 id="org181ed76"><span class="section-number-3">2.6.</span> Styling React Applications</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>To style elements in JSX, first we need to enter into JS mode{} and add the style as JS objects {{color: 'red}}</li>
+<li>The property of the styles should be in camelCase.</li>
+<li>We can also import styling from external files as well.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org849e359" class="outline-3">
+<h3 id="org849e359"><span class="section-number-3">2.7.</span> Passing and Receiving Props</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Props are being passed</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js">&lt;Pizza
+        name=<span style="color: #4682b4;">"Spinach Pizza"</span>
+        ingredients=<span style="color: #4682b4;">"Tomato, mozarella, ham, aragula, and burrata cheese"</span>
+        photoName=<span style="color: #4682b4;">"pizzas/prosciutto.jpg"</span>
+        price=<span style="color: #4682b4;">"10"</span>
+      /&gt;
+</pre>
+</div>
+<ul class="org-ul">
+<li>Props are being received</li>
+<li>The props are destructured in the function arguments</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">function</span> <span style="color: #e5e5e5; font-weight: bold;">Pizza</span>({ name, ingredients, photoName, price }) {
+  <span style="color: #e5e5e5; font-weight: bold;">return</span> (
+    &lt;div&gt;
+      &lt;img src={photoName} alt={name}&gt;&lt;/img&gt;
+      &lt;h3&gt;{name}&lt;/h3&gt;
+      &lt;p&gt;{ingredients}&lt;/p&gt;
+      &lt;p&gt;{price}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0f69694" class="outline-3">
+<h3 id="org0f69694"><span class="section-number-3">2.8.</span> Props, Immutability and One way data flow</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+<img src="props-immutability-and-one-way-data-flow-1.jpg" alt="props-immutability-and-one-way-data-flow-1.jpg" />
+<img src="props-immutability-and-one-way-data-flow-2.jpg" alt="props-immutability-and-one-way-data-flow-2.jpg" />
+<img src="props-immutability-and-one-way-data-flow-3.jpg" alt="props-immutability-and-one-way-data-flow-3.jpg" />
+<img src="props-immutability-and-one-way-data-flow-4.jpg" alt="props-immutability-and-one-way-data-flow-4.jpg" />
+<img src="props-immutability-and-one-way-data-flow-6.jpg" alt="props-immutability-and-one-way-data-flow-6.jpg" />
+<img src="props-immutability-and-one-way-data-flow-7.jpg" alt="props-immutability-and-one-way-data-flow-7.jpg" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: mklno</p>
+<p class="date">Created: 2024-09-05 Thu 19:06</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-22 Thu 17:07 -->
+<!-- 2024-08-27 Tue 20:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sorting Algorithms</title>
@@ -203,19 +203,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6437af5">1. Selection Sort</a></li>
-<li><a href="#org0fe8999">2. Bubble Sort</a></li>
+<li><a href="#orgebb7557">1. Selection Sort</a></li>
+<li><a href="#org48caa13">2. Bubble Sort</a></li>
+<li><a href="#orge5b4557">3. Insertion Sort</a></li>
+<li><a href="#orgacbbdf9">4. Quick Sort</a></li>
+<li><a href="#orgd258a3f">5. Merge Sort</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6437af5" class="outline-2">
-<h2 id="org6437af5"><span class="section-number-2">1.</span> Selection Sort</h2>
+<div id="outline-container-orgebb7557" class="outline-2">
+<h2 id="orgebb7557"><span class="section-number-2">1.</span> Selection Sort</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Select minimum and swap</li>
 </ul>
 
-<div id="orge791a2c" class="figure">
+<div id="org90b99ec" class="figure">
 <p><img src="selection-sort-2.jpg" alt="selection-sort-2.jpg" />
 </p>
 </div>
@@ -226,9 +229,9 @@
 <pre class="src src-cpp"><span style="color: #e5e5e5; font-weight: bold;">class</span> <span style="color: #e5e5e5; font-style: italic;">Solution</span> {
 <span style="color: #e5e5e5; font-weight: bold;">public</span>:
     <span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; <span style="color: #e5e5e5; font-weight: bold;">selectionSort</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt;&amp; <span style="color: #e5e5e5;">nums</span>) {
-        <span style="color: #e5e5e5; font-weight: bold;">for</span>(<span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">i</span>=0; i&lt;=nums.size()-2;i++){
+        <span style="color: #e5e5e5; font-weight: bold;">for</span>(<span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">i</span>=0; i&lt;nums.size()-1;i++){
             <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">minIndex</span> = i;
-            <span style="color: #e5e5e5; font-weight: bold;">for</span>(<span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">j</span>=i+1; j&lt;=nums.size()-1;j++){
+            <span style="color: #e5e5e5; font-weight: bold;">for</span>(<span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">j</span>=i+1; j&lt;nums.size();j++){
                 <span style="color: #e5e5e5; font-weight: bold;">if</span>(nums[j] &lt; nums[minIndex]) minIndex = j;
             }
             <span style="color: #e5e5e5; font-weight: bold;">if</span>(minIndex != i) swap(<span style="color: #e5e5e5; font-style: italic;">nums</span>[minIndex], <span style="color: #e5e5e5; font-style: italic;">nums</span>[i]);
@@ -242,14 +245,14 @@
 <li>Time Complexity</li>
 </ul>
 
-<div id="org5b8bba7" class="figure">
+<div id="orgc68912e" class="figure">
 <p><img src="selection-sort-1.jpg" alt="selection-sort-1.jpg" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0fe8999" class="outline-2">
-<h2 id="org0fe8999"><span class="section-number-2">2.</span> Bubble Sort</h2>
+<div id="outline-container-org48caa13" class="outline-2">
+<h2 id="org48caa13"><span class="section-number-2">2.</span> Bubble Sort</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Push the max element to the last by using adjacent swaps</li>
@@ -295,10 +298,149 @@
 </div>
 </div>
 </div>
+<div id="outline-container-orge5b4557" class="outline-2">
+<h2 id="orge5b4557"><span class="section-number-2">3.</span> Insertion Sort</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Take an element and place it in its correct position.</li>
+<li>Time Complexity of O(n<sup>2</sup>). O(n) when the array is already sorted.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #e5e5e5; font-weight: bold;">class</span> <span style="color: #e5e5e5; font-style: italic;">Solution</span> {
+<span style="color: #e5e5e5; font-weight: bold;">public</span>:
+    <span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; <span style="color: #e5e5e5; font-weight: bold;">insertionSort</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt;&amp; <span style="color: #e5e5e5;">nums</span>) {
+        <span style="color: #e5e5e5; font-weight: bold;">for</span>(<span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">i</span>=0; i&lt;nums.size();i++){
+            <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">j</span> =i;
+            <span style="color: #e5e5e5; font-weight: bold;">while</span>(j &gt; 0 &amp;&amp; nums[j-1] &gt; nums[j]) {
+                swap(<span style="color: #e5e5e5; font-style: italic;">nums</span>[j], <span style="color: #e5e5e5; font-style: italic;">nums</span>[j-1]);
+                j--;
+                }
+        }
+        <span style="color: #e5e5e5; font-weight: bold;">return</span> nums;
+    }
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgacbbdf9" class="outline-2">
+<h2 id="orgacbbdf9"><span class="section-number-2">4.</span> Quick Sort</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Pick a Pivot. A Pivot can be
+<ul class="org-ul">
+<li>First element of the array.</li>
+<li>Last element of the array.</li>
+<li>Median of the array.</li>
+<li>Any random element of the array.</li>
+</ul></li>
+<li>Place the Pivot in its correct place in the sorted array.</li>
+<li>Smaller on the left and the larger on the right.</li>
+</ul>
+<p>
+<img src="quick-sort-1.jpg" alt="quick-sort-1.jpg" />
+<img src="quick-sort-2.jpg" alt="quick-sort-2.jpg" />
+<img src="quick-sort-3.jpg" alt="quick-sort-3.jpg" />
+<img src="quick-sort-4.jpg" alt="quick-sort-4.jpg" />
+<img src="quick-sort-5.jpg" alt="quick-sort-5.jpg" />
+<img src="quick-sort-6.jpg" alt="quick-sort-6.jpg" />
+</p>
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #e5e5e5; font-weight: bold;">class</span> <span style="color: #e5e5e5; font-style: italic;">Solution</span> {
+<span style="color: #e5e5e5; font-weight: bold;">private</span>:
+    <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5; font-weight: bold;">findParti</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; &amp;<span style="color: #e5e5e5;">nums</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">low</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">high</span>){
+        <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">pivot</span> = nums[low];
+        <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">i</span> = low;
+        <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">j</span> = high;
+
+        <span style="color: #e5e5e5; font-weight: bold;">while</span>(i &lt; j){
+            <span style="color: #e5e5e5; font-weight: bold;">while</span>(nums[i] &lt;= pivot &amp;&amp; i &lt; high) i++;
+            <span style="color: #e5e5e5; font-weight: bold;">while</span>(nums[j] &gt; pivot &amp;&amp; j &gt; low) j--;
+            <span style="color: #e5e5e5; font-weight: bold;">if</span>(i &lt; j) swap(<span style="color: #e5e5e5; font-style: italic;">nums</span>[i], <span style="color: #e5e5e5; font-style: italic;">nums</span>[j]);
+        }
+        swap(<span style="color: #e5e5e5; font-style: italic;">nums</span>[low], <span style="color: #e5e5e5; font-style: italic;">nums</span>[j]);
+        <span style="color: #e5e5e5; font-weight: bold;">return</span> j;
+
+    }
+    <span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; <span style="color: #e5e5e5; font-weight: bold;">qS</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; &amp;<span style="color: #e5e5e5;">nums</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">low</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">high</span>){
+        <span style="color: #e5e5e5; font-weight: bold;">if</span> (low &lt; high){
+            <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">partiInd</span> = findParti(<span style="color: #e5e5e5; font-style: italic;">nums</span>, low, high);
+            qS(<span style="color: #e5e5e5; font-style: italic;">nums</span>, low, partiInd-1);
+            qS(<span style="color: #e5e5e5; font-style: italic;">nums</span>, partiInd+1, high);
+        }
+        <span style="color: #e5e5e5; font-weight: bold;">return</span> nums;
+    }
+<span style="color: #e5e5e5; font-weight: bold;">public</span>:
+    <span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; <span style="color: #e5e5e5; font-weight: bold;">quickSort</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt;&amp; <span style="color: #e5e5e5;">nums</span>) {
+        qS(<span style="color: #e5e5e5; font-style: italic;">nums</span>, 0, nums.size()-1);
+        <span style="color: #e5e5e5; font-weight: bold;">return</span> nums;
+    }
+};
+<span style="color: #616161;">// </span><span style="color: #616161;">Time Complexity: n log n</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">Space Complexity: O(1)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd258a3f" class="outline-2">
+<h2 id="orgd258a3f"><span class="section-number-2">5.</span> Merge Sort</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>Divide the data structure and merge them once they are sorted.</li>
+<li>Instead of diving the array, we can use index as a reference to divide the array hypothetically.  
+<img src="merge-sort-1.jpg" alt="merge-sort-1.jpg" />
+<img src="merge-sort-2.jpg" alt="merge-sort-2.jpg" /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #e5e5e5; font-weight: bold;">class</span> <span style="color: #e5e5e5; font-style: italic;">Solution</span> {
+<span style="color: #e5e5e5; font-weight: bold;">private</span>:
+    <span style="color: #e5e5e5; font-style: italic;">void</span> <span style="color: #e5e5e5; font-weight: bold;">merge</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; &amp;<span style="color: #e5e5e5;">arr</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">low</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">mid</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">high</span>){
+        <span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; <span style="color: #e5e5e5;">temp</span>;
+        <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">left</span> = low;
+        <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">right</span> = mid+1;
+
+        <span style="color: #e5e5e5; font-weight: bold;">while</span>(left &lt;= mid &amp;&amp; right &lt;= high){
+            <span style="color: #e5e5e5; font-weight: bold;">if</span>(arr[left] &lt; arr[right]){
+                temp.push_back(<span style="color: #e5e5e5; font-style: italic;">arr</span>[left]);
+                left++;
+            } <span style="color: #e5e5e5; font-weight: bold;">else</span> {
+                temp.push_back(<span style="color: #e5e5e5; font-style: italic;">arr</span>[right]);
+                right++;
+            }
+        }
+        <span style="color: #e5e5e5; font-weight: bold;">while</span>(left &lt;= mid){
+            temp.push_back(<span style="color: #e5e5e5; font-style: italic;">arr</span>[left]);
+            left++;
+        }
+        <span style="color: #e5e5e5; font-weight: bold;">while</span>(right &lt;= high){
+            temp.push_back(<span style="color: #e5e5e5; font-style: italic;">arr</span>[right]);
+            right++;
+        }
+        <span style="color: #e5e5e5; font-weight: bold;">for</span>(<span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">i</span> = low; i&lt;=high; i++){
+            arr[i] = temp[i-low];
+        }
+    }
+    <span style="color: #e5e5e5; font-style: italic;">void</span> <span style="color: #e5e5e5; font-weight: bold;">mergeSort</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; &amp;<span style="color: #e5e5e5;">arr</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">low</span>, <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">high</span>){
+        <span style="color: #e5e5e5; font-weight: bold;">if</span>(low == high) <span style="color: #e5e5e5; font-weight: bold;">return</span>;
+        <span style="color: #e5e5e5; font-style: italic;">int</span> <span style="color: #e5e5e5;">mid</span> = (low + high) / 2;
+        mergeSort(<span style="color: #e5e5e5; font-style: italic;">arr</span>, low, mid);
+        mergeSort(<span style="color: #e5e5e5; font-style: italic;">arr</span>, mid+1, high);
+        merge(<span style="color: #e5e5e5; font-style: italic;">arr</span>, low, mid, high);
+    }
+<span style="color: #e5e5e5; font-weight: bold;">public</span>:
+    <span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt; <span style="color: #e5e5e5; font-weight: bold;">sortArray</span>(<span style="color: #e5e5e5; font-style: italic;">vector</span>&lt;<span style="color: #e5e5e5; font-style: italic;">int</span>&gt;&amp; <span style="color: #e5e5e5;">nums</span>) {
+        mergeSort(nums, 0, nums.size()-1);
+        <span style="color: #e5e5e5; font-weight: bold;">return</span> nums;
+    }
+};
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: mklno</p>
-<p class="date">Created: 2024-08-22 Thu 17:07</p>
+<p class="date">Created: 2024-08-27 Tue 20:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

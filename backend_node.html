@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-26 Mon 00:30 -->
+<!-- 2024-08-26 Mon 11:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Backend Node Course</title>
@@ -203,47 +203,53 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org713da90">1. Introduction to Node.js and NPM</a>
+<li><a href="#org1ec7b76">1. Introduction to Node.js and NPM</a>
 <ul>
-<li><a href="#orgf70a7e9">1.1. What is Node.js and Why use it?</a></li>
-<li><a href="#orge1586f5">1.2. Why and When to use Node.js</a></li>
-<li><a href="#org804cb0e">1.3. Read and Write files in Node.js</a></li>
-<li><a href="#org9dcf692">1.4. Blocking and Non-Blocking: Asynchronous nature of Node.js</a>
+<li><a href="#org806db94">1.1. What is Node.js and Why use it?</a></li>
+<li><a href="#org7f35979">1.2. Why and When to use Node.js</a></li>
+<li><a href="#org4461ef2">1.3. Read and Write files in Node.js</a></li>
+<li><a href="#org85bbada">1.4. Blocking and Non-Blocking: Asynchronous nature of Node.js</a>
 <ul>
-<li><a href="#orgcea6b32">1.4.1. Why do we need to have non blocking code?</a></li>
+<li><a href="#orgc48124d">1.4.1. Why do we need to have non blocking code?</a></li>
 </ul>
 </li>
-<li><a href="#org2775e87">1.5. Reading and Writing files Asynchronously</a></li>
+<li><a href="#orgde0f22a">1.5. Reading and Writing files Asynchronously</a></li>
+<li><a href="#orgc198703">1.6. Creating a Simple Webserver</a></li>
+<li><a href="#org69f5a1e">1.7. Routing</a></li>
+<li><a href="#orge2c5590">1.8. Building a very simple API</a></li>
+<li><a href="#org0431b3f">1.9. HTML templating: Building the templates</a></li>
+<li><a href="#orged8c1e0">1.10. HTML templating: Filling the templates</a></li>
+<li><a href="#orgdc57443">1.11. Parse variables from URLs</a></li>
 </ul>
 </li>
-<li><a href="#org79bc05a">2. Notes / Tips / References</a></li>
+<li><a href="#orgab939e0">2. Notes / Tips / References</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org713da90" class="outline-2">
-<h2 id="org713da90"><span class="section-number-2">1.</span> Introduction to Node.js and NPM</h2>
+<div id="outline-container-org1ec7b76" class="outline-2">
+<h2 id="org1ec7b76"><span class="section-number-2">1.</span> Introduction to Node.js and NPM</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf70a7e9" class="outline-3">
-<h3 id="orgf70a7e9"><span class="section-number-3">1.1.</span> What is Node.js and Why use it?</h3>
+<div id="outline-container-org806db94" class="outline-3">
+<h3 id="org806db94"><span class="section-number-3">1.1.</span> What is Node.js and Why use it?</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Node.js is a Javascript runtime environment build on Goolge's open source V8 Javascript engine.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge1586f5" class="outline-3">
-<h3 id="orge1586f5"><span class="section-number-3">1.2.</span> Why and When to use Node.js</h3>
+<div id="outline-container-org7f35979" class="outline-3">
+<h3 id="org7f35979"><span class="section-number-3">1.2.</span> Why and When to use Node.js</h3>
 <div class="outline-text-3" id="text-1-2">
 
-<div id="orgf1384e1" class="figure">
+<div id="orga864d05" class="figure">
 <p><img src="why-and-when-to-use-node-js-1.jpg" alt="why-and-when-to-use-node-js-1.jpg" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org804cb0e" class="outline-3">
-<h3 id="org804cb0e"><span class="section-number-3">1.3.</span> Read and Write files in Node.js</h3>
+<div id="outline-container-org4461ef2" class="outline-3">
+<h3 id="org4461ef2"><span class="section-number-3">1.3.</span> Read and Write files in Node.js</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">fs</span> = require(<span style="color: #4682b4;">"fs"</span>);
@@ -257,20 +263,20 @@ fs.writeFileSync(<span style="color: #4682b4;">"./txt/output.txt"</span>, txt);
 </div>
 </div>
 </div>
-<div id="outline-container-org9dcf692" class="outline-3">
-<h3 id="org9dcf692"><span class="section-number-3">1.4.</span> Blocking and Non-Blocking: Asynchronous nature of Node.js</h3>
+<div id="outline-container-org85bbada" class="outline-3">
+<h3 id="org85bbada"><span class="section-number-3">1.4.</span> Blocking and Non-Blocking: Asynchronous nature of Node.js</h3>
 <div class="outline-text-3" id="text-1-4">
 
-<div id="org03dd3a4" class="figure">
+<div id="org1123423" class="figure">
 <p><img src="blocking-and-non-blocking-asynchronous-n-1.jpg" alt="blocking-and-non-blocking-asynchronous-n-1.jpg" />
 </p>
 </div>
 </div>
-<div id="outline-container-orgcea6b32" class="outline-4">
-<h4 id="orgcea6b32"><span class="section-number-4">1.4.1.</span> Why do we need to have non blocking code?</h4>
+<div id="outline-container-orgc48124d" class="outline-4">
+<h4 id="orgc48124d"><span class="section-number-4">1.4.1.</span> Why do we need to have non blocking code?</h4>
 <div class="outline-text-4" id="text-1-4-1">
 
-<div id="orgd5722a2" class="figure">
+<div id="orge617d02" class="figure">
 <p><img src="why-do-we-need-to-have-non-blocking-code-1.jpg" alt="why-do-we-need-to-have-non-blocking-code-1.jpg" />
 </p>
 </div>
@@ -279,15 +285,15 @@ fs.writeFileSync(<span style="color: #4682b4;">"./txt/output.txt"</span>, txt);
 <li>The main problem while dealing the asynchronous code is the arrival of callback hell.</li>
 </ul>
 
-<div id="org8d862d8" class="figure">
+<div id="org352de2c" class="figure">
 <p><img src="why-do-we-need-to-have-non-blocking-code-2.jpg" alt="why-do-we-need-to-have-non-blocking-code-2.jpg" />    
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org2775e87" class="outline-3">
-<h3 id="org2775e87"><span class="section-number-3">1.5.</span> Reading and Writing files Asynchronously</h3>
+<div id="outline-container-orgde0f22a" class="outline-3">
+<h3 id="orgde0f22a"><span class="section-number-3">1.5.</span> Reading and Writing files Asynchronously</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">fs</span> = require(<span style="color: #4682b4;">"fs"</span>);
@@ -324,19 +330,205 @@ console.log(<span style="color: #4682b4;">"Read it first"</span>);
 </div>
 </div>
 </div>
+<div id="outline-container-orgc198703" class="outline-3">
+<h3 id="orgc198703"><span class="section-number-3">1.6.</span> Creating a Simple Webserver</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">http</span> = require(<span style="color: #4682b4;">"http"</span>);
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">server</span> = http.createServer((req, res) =&gt; {
+  res.end(<span style="color: #4682b4;">"Hello from the server"</span>);
+});
+server.listen(8000, <span style="color: #4682b4;">"127.0.0.1"</span>, () =&gt; console.log(<span style="color: #4682b4;">"Listenting on port 8000"</span>));
+</pre>
 </div>
-<div id="outline-container-org79bc05a" class="outline-2">
-<h2 id="org79bc05a"><span class="section-number-2">2.</span> Notes / Tips / References</h2>
+</div>
+</div>
+<div id="outline-container-org69f5a1e" class="outline-3">
+<h3 id="org69f5a1e"><span class="section-number-3">1.7.</span> Routing</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">http</span> = require(<span style="color: #4682b4;">"http"</span>);
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">url</span> = require(<span style="color: #4682b4;">"url"</span>);
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">server</span> = http.createServer((req, res) =&gt; {
+  <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">pathName</span> = req.url;
+  <span style="color: #e5e5e5; font-weight: bold;">if</span> (pathName === <span style="color: #4682b4;">"/"</span> || pathName === <span style="color: #4682b4;">"/overview"</span>) {
+    res.end(<span style="color: #4682b4;">"This is the OVERVIEW"</span>);
+  } <span style="color: #e5e5e5; font-weight: bold;">else</span> <span style="color: #e5e5e5; font-weight: bold;">if</span> (pathName === <span style="color: #4682b4;">"/product"</span>) {
+    res.end(<span style="color: #4682b4;">"This is the PRODUCT"</span>);
+  } <span style="color: #e5e5e5; font-weight: bold;">else</span> {
+    res.writeHead(404, {
+      <span style="color: #4682b4;">"Content-type"</span>: <span style="color: #4682b4;">"text/html"</span>,
+      <span style="color: #4682b4;">"my-own-header"</span>: <span style="color: #4682b4;">"hello-world"</span>,
+    });
+    res.end(<span style="color: #4682b4;">"Page not found!"</span>);
+  }
+});
+server.listen(8000, <span style="color: #4682b4;">"127.0.0.1"</span>, () =&gt; console.log(<span style="color: #4682b4;">"Listenting on port 8000"</span>));
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2c5590" class="outline-3">
+<h3 id="orge2c5590"><span class="section-number-3">1.8.</span> Building a very simple API</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">http</span> = require(<span style="color: #4682b4;">"http"</span>);
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">url</span> = require(<span style="color: #4682b4;">"url"</span>);
+
+<span style="color: #616161;">// </span><span style="color: #616161;">sync code used since this line is executed only one which doesn't block the code block</span>
+<span style="color: #616161;">// </span><span style="color: #616161;">instead of reading the file everytime the api route is loaded we load the file once and use it henceforth</span>
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">data</span> = fs.readFileSync(<span style="color: #4682b4;">"./dev-data/data.json"</span>, <span style="color: #4682b4;">"utf-8"</span>);
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">productData</span> = JSON.parse(data);
+
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">server</span> = http.createServer((req, res) =&gt; {
+  <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">pathName</span> = req.url;
+  <span style="color: #e5e5e5; font-weight: bold;">if</span> (pathName === <span style="color: #4682b4;">"/"</span> || pathName === <span style="color: #4682b4;">"/overview"</span>) {
+    res.end(<span style="color: #4682b4;">"This is the OVERVIEW"</span>);
+  } <span style="color: #e5e5e5; font-weight: bold;">else</span> <span style="color: #e5e5e5; font-weight: bold;">if</span> (pathName === <span style="color: #4682b4;">"/api"</span>) {
+    <span style="color: #616161;">// </span><span style="color: #616161;">insead of reading it everytime we can load it initially and get the data when we want</span>
+    <span style="color: #616161;">// </span><span style="color: #616161;">fs.readFile("./dev-data/data.json", "utf-8", (err, data) =&gt; {</span>
+    console.log(productData);
+    res.writeHead(200, {
+      <span style="color: #4682b4;">"Content-type"</span>: <span style="color: #4682b4;">"application/json"</span>,
+    });
+    res.end(data); <span style="color: #616161;">// </span><span style="color: #616161;">return value should be a string and hece data is being sent instead of productData</span>
+    <span style="color: #616161;">//</span><span style="color: #616161;">});</span>
+  } <span style="color: #e5e5e5; font-weight: bold;">else</span> <span style="color: #e5e5e5; font-weight: bold;">if</span> (pathName === <span style="color: #4682b4;">"/product"</span>) {
+    res.end(<span style="color: #4682b4;">"This is the PRODUCT"</span>);
+  } <span style="color: #e5e5e5; font-weight: bold;">else</span> {
+    res.writeHead(404, {
+      <span style="color: #4682b4;">"Content-type"</span>: <span style="color: #4682b4;">"text/html"</span>,
+      <span style="color: #4682b4;">"my-own-header"</span>: <span style="color: #4682b4;">"hello-world"</span>,
+    });
+    res.end(<span style="color: #4682b4;">"Page not found!"</span>);
+  }
+});
+server.listen(8000, <span style="color: #4682b4;">"127.0.0.1"</span>, () =&gt; console.log(<span style="color: #4682b4;">"Listenting on port 8000"</span>));
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0431b3f" class="outline-3">
+<h3 id="org0431b3f"><span class="section-number-3">1.9.</span> HTML templating: Building the templates</h3>
+<div class="outline-text-3" id="text-1-9">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #e5e5e5; font-weight: bold;">h2</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"product__name"</span>&gt;<span style="font-weight: bold; font-style: italic; text-decoration: underline;">{</span><span style="color: #e5e5e5; font-weight: bold; font-style: italic; text-decoration: underline;">%PRODUCTNAME</span><span style="font-weight: bold; font-style: italic; text-decoration: underline;">%}</span>&lt;/<span style="color: #e5e5e5; font-weight: bold;">h2</span>&gt;
+&lt;<span style="color: #e5e5e5; font-weight: bold;">div</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"product__details"</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;&lt;<span style="color: #e5e5e5; font-weight: bold;">span</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"emoji-left"</span>&gt;&#127757;&lt;/<span style="color: #e5e5e5; font-weight: bold;">span</span>&gt;From {<span style="color: #e5e5e5;">%LOCATION</span>%}&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;&lt;<span style="color: #e5e5e5; font-weight: bold;">span</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"emoji-left"</span>&gt;&#10084;&#65039;&lt;/<span style="color: #e5e5e5; font-weight: bold;">span</span>&gt;{<span style="color: #e5e5e5;">%PRODUCTNUTRIENTS</span>%}&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;&lt;<span style="color: #e5e5e5; font-weight: bold;">span</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"emoji-left"</span>&gt;&#128230;&lt;/<span style="color: #e5e5e5; font-weight: bold;">span</span>&gt;{<span style="color: #e5e5e5;">%QUANTITY</span>%}&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;&lt;<span style="color: #e5e5e5; font-weight: bold;">span</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"emoji-left"</span>&gt;&#127991;&lt;/<span style="color: #e5e5e5; font-weight: bold;">span</span>&gt;{<span style="color: #e5e5e5;">%PRICE</span>%}&#8364;&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+&lt;/<span style="color: #e5e5e5; font-weight: bold;">div</span>&gt;
+
+&lt;<span style="color: #e5e5e5; font-weight: bold;">a</span> <span style="color: #e5e5e5;">href</span>=<span style="color: #4682b4;">"#"</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"product__link"</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">span</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"emoji-left"</span>&gt;&#128722;&lt;/<span style="color: #e5e5e5; font-weight: bold;">span</span>&gt;
+  &lt;<span style="color: #e5e5e5; font-weight: bold;">span</span>&gt;Add to shopping card ({<span style="color: #e5e5e5;">%PRICE</span>%}&#8364;)&lt;/<span style="color: #e5e5e5; font-weight: bold;">span</span>&gt;
+&lt;/<span style="color: #e5e5e5; font-weight: bold;">a</span>&gt;
+
+&lt;<span style="color: #e5e5e5; font-weight: bold;">p</span> <span style="color: #e5e5e5;">class</span>=<span style="color: #4682b4;">"product__description"</span>&gt;{<span style="color: #e5e5e5;">%PRODUCTDESCRIPTION</span>%}&lt;/<span style="color: #e5e5e5; font-weight: bold;">p</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orged8c1e0" class="outline-3">
+<h3 id="orged8c1e0"><span class="section-number-3">1.10.</span> HTML templating: Filling the templates</h3>
+<div class="outline-text-3" id="text-1-10">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">tempOverview</span> = fs.readFileSync(<span style="color: #4682b4;">"./templates/overview.html"</span>, <span style="color: #4682b4;">"utf-8"</span>);
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">tempProduct</span> = fs.readFileSync(<span style="color: #4682b4;">"./templates/product.html"</span>, <span style="color: #4682b4;">"utf-8"</span>);
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">tempCard</span> = fs.readFileSync(<span style="color: #4682b4;">"./templates/card.html"</span>, <span style="color: #4682b4;">"utf-8"</span>);
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">replaceTemplate</span> = <span style="color: #e5e5e5; font-weight: bold;">function</span> (<span style="color: #e5e5e5;">tempCard</span>, <span style="color: #e5e5e5;">el</span>) {
+  <span style="color: #e5e5e5; font-weight: bold;">let</span> <span style="color: #e5e5e5;">output</span> = tempCard.replace(<span style="color: #4682b4;">/{%PRODUCTNAME%}/</span>g, el.productName);
+  output = output.replace(<span style="color: #4682b4;">/{%PRODUCTEMOJI%}/</span>g, el.image);
+  output = output.replace(<span style="color: #4682b4;">/{%PRICE%}/</span>g, el.price);
+  output = output.replace(<span style="color: #4682b4;">/{%QUANTITY%}/</span>g, el.quantity);
+  output = output.replace(<span style="color: #4682b4;">/{%LOCATION%}/</span>g, el.from);
+  output = output.replace(<span style="color: #4682b4;">/{%PRODUCTNUTRIENTS%}/</span>g, el.nutrients);
+  output = output.replace(<span style="color: #4682b4;">/{%PRODUCTDESCRIPTION%}/</span>g, el.description);
+
+  <span style="color: #e5e5e5; font-weight: bold;">if</span> (!el.organic) output = output.replace(<span style="color: #4682b4;">/{%NOTORGANIC%}/</span>g, <span style="color: #4682b4;">'not-organic'</span>);
+};
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-js">  <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">server</span> = http.createServer((req, res) =&gt; {
+    <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">pathName</span> = req.url;
+    <span style="color: #616161;">//</span><span style="color: #616161;">overview page</span>
+    <span style="color: #e5e5e5; font-weight: bold;">if</span> (pathName === <span style="color: #4682b4;">"/"</span> || pathName === <span style="color: #4682b4;">"/overview"</span>) {
+      <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">cardsHTML</span> = productData
+        .map((el) =&gt; replaceTemplate(tempCard, el))
+        .join(<span style="color: #4682b4;">""</span>);
+      <span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">overviewPage</span> = tempOverview.replace(<span style="color: #4682b4;">/{%PRODUCTCARDS%}/</span>g, cardsHTML);
+      res.writeHead(200, {
+        <span style="color: #4682b4;">"Content-type"</span>: <span style="color: #4682b4;">"text/html"</span>,
+      });
+      res.end(overviewPage);
+
+      <span style="color: #616161;">// </span><span style="color: #616161;">api page</span>
+&#1;    };
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdc57443" class="outline-3">
+<h3 id="orgdc57443"><span class="section-number-3">1.11.</span> Parse variables from URLs</h3>
+<div class="outline-text-3" id="text-1-11">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">pathName</span> = req.url;
+console.log(pathName);
+console.log(url.parse(req.url, <span style="color: #e5e5e5; font-weight: bold;">true</span>));
+<span style="color: #616161;">/*  </span>
+<span style="color: #616161;">  /product?id=10</span>
+<span style="color: #616161;">  Url {</span>
+<span style="color: #616161;">    protocol: null,</span>
+<span style="color: #616161;">    slashes: null,</span>
+<span style="color: #616161;">    auth: null,</span>
+<span style="color: #616161;">    host: null,</span>
+<span style="color: #616161;">    port: null,</span>
+<span style="color: #616161;">    hostname: null,</span>
+<span style="color: #616161;">    hash: null,</span>
+<span style="color: #616161;">    search: '?id=10',</span>
+<span style="color: #616161;">    query: [Object: null prototype] { id: '10' },</span>
+<span style="color: #616161;">    pathname: '/product',</span>
+<span style="color: #616161;">    path: '/product?id=10',</span>
+<span style="color: #616161;">    href: '/product?id=10'</span>
+<span style="color: #616161;">  }</span>
+<span style="color: #616161;">*/</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #e5e5e5; font-weight: bold;">const</span> { query, pathname: pathName } = url.parse(req.url, <span style="color: #e5e5e5; font-weight: bold;">true</span>);
+<span style="color: #e5e5e5; font-weight: bold;">if</span> (pathName === <span style="color: #4682b4;">"/product"</span>) {
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">product</span> = productData[query.id];
+<span style="color: #e5e5e5; font-weight: bold;">const</span> <span style="color: #e5e5e5;">out</span> = replaceTemplate(tempProduct, product);
+res.writeHead(200, {
+  <span style="color: #4682b4;">"Content-type"</span>: <span style="color: #4682b4;">"text/html"</span>,
+});
+res.end(out);
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgab939e0" class="outline-2">
+<h2 id="orgab939e0"><span class="section-number-2">2.</span> Notes / Tips / References</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Using _ in the REPL mode fetches the result of the last evaluation.</li>
+<li>Using . while mentioning the path in the URL indicates the place in which the script is being run. <b>Eg: const pathName = "./txt/data.json</b></li>
+<li>_<sub>dirname</sub> is where the current file is located. <b>Eg: const pathname = `${_<sub>dirname</sub>}/txt/data.json`</b></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: mklno</p>
-<p class="date">Created: 2024-08-26 Mon 00:30</p>
+<p class="date">Created: 2024-08-26 Mon 11:53</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
